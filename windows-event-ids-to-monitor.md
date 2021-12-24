@@ -1,4 +1,4 @@
-# Security
+# SECURITY
 
 | Event ID | Description                                                                                                         |
 | :------: | :------------------------------------------------------------------------------------------------------------------ |
@@ -72,7 +72,7 @@
 | 6424     | The installation of this device was allowed, after having previously been forbidden by policy                       |
 
 
-# Application
+# APPLICATION
 
 | Event ID | Description       |
 | :------: | :---------------- |
@@ -80,8 +80,18 @@
 | 1002     | Application Hang  |
 
 
-# System
+# SYSTEM
 
 | Event ID | Description                               |
 | :------: | :---------------------------------------- |
 | 7045     | A new service was installed in the system |
+
+
+# ESENT
+
+| Event ID | Description                                |
+| :------: | :----------------------------------------- |
+| 216      | A database location change was detected    |
+| 325      | The database engine created a new database |
+| 326      | The database engine attached a database    |
+| 327      | The database engine detached a database    |
