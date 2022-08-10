@@ -1,6 +1,6 @@
 # Windows Advanced Audit Policy Configuration Guide
-- [CIS Recommended Controls](https://downloads.cisecurity.org/#/)
-- [Microsoft Recommended Controls](https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/advanced-security-audit-policy-settings)
+- [CIS Controls](https://downloads.cisecurity.org/#/)
+- [Microsoft Controls](https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/advanced-security-audit-policy-settings)
 
 | Category           	| Sub-Category                                	| CIS Control         	| CIS Control         	| Microsoft Control   	| Microsoft Control   	| Microsoft Control   	|
 | :------------------	| :--------------------------------------------	| :--------------------	| :--------------------	| :--------------------	| :--------------------	| :------------------- |
