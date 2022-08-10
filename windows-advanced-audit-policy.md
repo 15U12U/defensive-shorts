@@ -1,3 +1,5 @@
+# Windows Advanced Audit Policy Configuration Recommendations
+
 | Category           	| Sub-Category                                 	| CIS Control         	|                     	| Microsoft Control   	|                     	|                     	|
 |--------------------	|----------------------------------------------	|---------------------	|---------------------	|---------------------	|---------------------	|---------------------	|
 |                    	|                                              	| Domain Controller   	| Member Server       	| Domain Controller   	| Member Server       	| Workstation         	|
