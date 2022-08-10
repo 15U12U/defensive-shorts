@@ -2,9 +2,9 @@
 - [CIS Recommended Controls](https://downloads.cisecurity.org/#/)
 - [Microsoft Recommended Controls](https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/advanced-security-audit-policy-settings)
 
-| Category           	| Sub-Category                                 	| CIS Control         	|                     	| Microsoft Control   	|                     	|                     	|
-|--------------------	|----------------------------------------------	|---------------------	|---------------------	|---------------------	|---------------------	|---------------------	|
-|                    	|                                              	| Domain Controller   	| Member Server       	| Domain Controller   	| Member Server       	| Workstation         	|
+| Category           	| Sub-Category                                	| CIS Control         	| CIS Control         	| Microsoft Control   	| Microsoft Control   	| Microsoft Control   	|
+| :------------------	| :--------------------------------------------	| :--------------------	| :--------------------	| :--------------------	| :--------------------	| :------------------- |
+|                   	|                                             	| Domain Controller   	| Member Server       	| Domain Controller   	| Member Server       	| Workstation         	|
 | Account Logon      	|                                              	|                     	|                     	|                     	|                     	|                     	|
 |                    	| Audit Credential Validation                  	| Success and Failure 	| Success and Failure 	| Success and Failure 	| Success and Failure 	| Success and Failure 	|
 |                    	| Audit Kerberos Authentication Service        	| Success and Failure 	| *Not Applicable*     	| Success and Failure 	| *Not Applicable*     	| *Not Applicable*     	|
