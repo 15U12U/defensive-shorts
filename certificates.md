@@ -18,3 +18,13 @@
 
 ## Conversions
 
+| Conversion   | Command              | Remarks                               |
+|--------------|----------------------|---------------------------------------|
+| .pem -> .crt | mv cert.pem cert.crt | .crt will be in Base64 encoded format |
+| .crt -> .pem | mv cert.crt cert.pem |                                       |
+|              |                      |                                       |
+|              |                      |                                       |
+|              |                      |                                       |
+|              |                      |                                       |
+|              |                      |                                       |
+|              |                      |                                       |
