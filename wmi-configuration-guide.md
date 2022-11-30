@@ -27,7 +27,6 @@
 | ------------------------- |
 | Distributed COM Users     |
 | Performance Monitor Users |
-| Remote Desktop Users      |
 | Event Log Reader          |
 
 ## Troublshooting
