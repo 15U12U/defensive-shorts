@@ -7,19 +7,6 @@
 
 
 
-## MSSQL
-```
-C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Logs
-```
-
-## MySQL
-```
-/var/log/mysql/error.log
-```
-## PostgreSQL
-```
-/var/log/postgresql/postgresql-10-main.log.*
-```
 
 General Log Channels,  Tomcat c:\apache-tomcat-8.0.35\apache-tomcat-8.0.35\logs\localhost.*.log   localhost_access_log.*.txt
 
