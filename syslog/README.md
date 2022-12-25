@@ -62,7 +62,7 @@ logger "test message"
 # Configure Syslog over TLS
 ## Install TLS protocol support for rsyslog (GnuTLS)
 ```bash
-sudo apt-get install rsyslog-gnutls -y
+sudo apt install rsyslog-gnutls -y
 sudo yum install rsyslog-gnutls -y
 sudo dnf install rsyslog-gnutls -y
 ```
