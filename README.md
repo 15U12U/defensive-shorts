@@ -6,3 +6,4 @@
 - [Syslog Configuration Guide](syslog/README.md)
 - [OpenSCAP CIS Benchmarking/Remediation Guide](openscap-cis-benchmarking.md)
 - [WMI Configuration for Event Log Collection](wmi-configuration-guide.md)
+- [List of User Rights Assignments](user-rights-assignment.md)
