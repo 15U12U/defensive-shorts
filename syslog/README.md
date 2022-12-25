@@ -66,7 +66,9 @@ sudo apt install rsyslog-gnutls -y
 sudo yum install rsyslog-gnutls -y
 sudo dnf install rsyslog-gnutls -y
 ```
-## Create a new rsyslog config file
+## Server Configuration
 - [rsyslog-tls.conf](rsyslog/rsyslog.d/rsyslog-tls.conf)
 
+## Client Configuration
+- [imfile.conf](rsyslog/rsyslog.d/imfile.conf)
 
