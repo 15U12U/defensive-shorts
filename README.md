@@ -9,3 +9,4 @@
 - [WMI Configuration for Event Log Collection](wmi-configuration-guide.md)
 - [List of User Rights Assignments](user-rights-assignment.md)
 - [SSL/TLS Certificate Guide](certificates.md)
+- [Generic Log File Locations](logs/README.md)
