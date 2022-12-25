@@ -1,5 +1,4 @@
 # Syslog Configuration
-
 ## Syslog Facility Levels
 
 | Number 	| Keyword  	| Facility description                     	|
@@ -41,14 +40,15 @@
 | 5    	| Notice        	| notice         	| Normal but significant condition. 	|
 | 6    	| Informational 	| info           	| Informational messages.           	|
 | 7    	| Debug         	| debug          	| Debug-level messages.             	|
+---
 
-## Test syslog configuration
+## Test Rsyslog configuration
 ```bash
 rsyslogd -N 5
 ```
+---
 
 ## Test syslog forwarding
-
 ### Using Netcat
 ```bash
 echo "message" | nc -q0 127.0.0.1 514
@@ -58,3 +58,15 @@ echo "message" | nc -q0 127.0.0.1 514
 ```bash
 logger "test message"
 ```
+
+# Configure Syslog over TLS
+## Install TLS protocol support for rsyslog (GnuTLS)
+```bash
+sudo apt-get install rsyslog-gnutls -y
+sudo yum install rsyslog-gnutls -y
+sudo dnf install rsyslog-gnutls -y
+```
+## Create a Rsyslog conf file
+[rsyslog-tls.conf](rsyslog-tls.conf)
+
+
