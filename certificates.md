@@ -40,4 +40,17 @@
 | Android                           | /system/etc/security/cacerts/    |
 | NetBSD                            | /etc/openssl/certs/              |
 | AIX                               | /var/ssl/certs/                  |
+| Solaris                           | /etc/sfw/openssl/                |
 
+
+# Check/Verify details of a Certificate
+```bash
+openssl x509 -in <cert> -text -noout
+```
+
+# Check/Verify Public Key by generating the Hash
+```bash
+openssl pkey -pubout -in pvt-key.key | openssl sha256
+openssl req -pubkey -in CSR.csr -noout | openssl sha256
+openssl x509 -pubkey -in cert.crt -noout | openssl sha256
+```
