@@ -59,14 +59,14 @@ echo "message" | nc -q0 127.0.0.1 514
 logger "test message"
 ```
 
-# Configure Syslog over TLS
+# Syslog over TLS (Server Configuration)
 ## Install TLS protocol support for rsyslog (GnuTLS)
 ```bash
 sudo apt install rsyslog-gnutls -y
 sudo yum install rsyslog-gnutls -y
 sudo dnf install rsyslog-gnutls -y
 ```
-## Create a Rsyslog conf file
-[rsyslog-tls.conf](rsyslog/rsyslog.d/rsyslog-tls.conf)
+## Create a new rsyslog config file
+- [rsyslog-tls.conf](rsyslog/rsyslog.d/rsyslog-tls.conf)
 
 
