@@ -61,11 +61,6 @@ logger "test message"
 ---
 
 # Install a syslog daemon
-```bash
-sudo apt install rsyslog -y
-sudo yum install rsyslog -y
-sudo dnf install rsyslog -y
-```
 | Rsyslog | Syslog-ng |
 | :----- | :------ |
 | <pre lang=bash>sudo apt install rsyslog -y</pre><br><pre lang=bash>sudo yum install rsyslog -y</pre></br><pre lang=bash>sudo dnf install rsyslog -y</pre> | <pre lang=bash>sudo apt install syslog-ng -y</pre><br><pre lang=bash>sudo yum install syslog-ng -y</pre></br><pre lang=bash>sudo dnf install syslog-ng -y</pre> |
