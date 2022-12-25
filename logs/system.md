@@ -1,12 +1,17 @@
 ## System Logs
 ### Windows
 ```
-C:\Windows\System32\winevt\Logs\Security.evtx
-C:\Windows\System32\winevt\Logs\Application.evtx
-C:\Windows\System32\winevt\Logs\System.evtx
-C:\Windows\System32\winevt\Logs\Windows Powershell.evtx
-C:\Windows\System32\winevt\Logs\Microsoft-Windows-PowerShell%4Operational.evtx
-C:\Windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx
+C:
+└── Windows
+    └── System32
+        └── winevt
+            └── Logs
+                ├── Security.evtx
+                ├── Application.evtx
+                ├── System.evtx
+                ├── Windows Powershell.evtx
+                ├── Microsoft-Windows-PowerShell%4Operational.evtx
+                └── Microsoft-Windows-Sysmon%4Operational.evtx
 ```
 
 ### Linux/Unix
