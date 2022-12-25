@@ -67,6 +67,6 @@ sudo yum install rsyslog-gnutls -y
 sudo dnf install rsyslog-gnutls -y
 ```
 ## Create a Rsyslog conf file
-[rsyslog-tls.conf](rsyslog-tls.conf)
+[rsyslog-tls.conf](rsyslog/rsyslog.d/rsyslog-tls.conf)
 
 
