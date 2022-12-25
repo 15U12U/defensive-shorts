@@ -28,3 +28,14 @@
 |              |                      |                                       |
 |              |                      |                                       |
 |              |                      |                                       |
+
+# Public Root Certificate Locations in Linux
+
+| OS                        | Location                                          |
+| :------------------------ | :------------------------------------------------ |
+| Debian/Ubuntu/Gentoo etc. | /etc/ssl/certs/ca-certificates.crt                |
+| Fedora/RHEL 6             | /etc/pki/tls/certs/ca-bundle.crt                  |
+| CentOS/RHEL 7 etc.        | /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem |
+| OpenSUSE                  | /etc/ssl/ca-bundle.pem                            |
+| OpenELEC                  | /etc/pki/tls/cacert.pem                           |
+| Alpine Linux              | /etc/ssl/cert.pem                                 |
