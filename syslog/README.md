@@ -58,14 +58,24 @@ echo "message" | nc -q0 127.0.0.1 514
 ```bash
 logger "test message"
 ```
+---
+
+# Install a syslog daemon
+```bash
+sudo apt install rsyslog -y
+sudo yum install rsyslog -y
+sudo dnf install rsyslog -y
+```
+| Rsyslog | Syslog-ng |
+| :----- | :------ |
+| <pre lang=bash>sudo apt install rsyslog -y</pre><br><pre lang=bash>sudo yum install rsyslog -y</pre></br><pre lang=bash>sudo dnf install rsyslog -y</pre> | <pre lang=bash>sudo apt install syslog-ng -y</pre><br><pre lang=bash>sudo yum install syslog-ng -y</pre></br><pre lang=bash>sudo dnf install syslog-ng -y</pre> |
 
 # Syslog over TLS (Server Configuration)
-## Install TLS protocol support for rsyslog (GnuTLS)
-```bash
-sudo apt install rsyslog-gnutls -y
-sudo yum install rsyslog-gnutls -y
-sudo dnf install rsyslog-gnutls -y
-```
+## Install TLS protocol support for rsyslog (GnuTLS/OpenSSL)
+| GnuTLS | OpenSSL |
+| :----- | :------ |
+| <pre lang=bash>sudo apt install rsyslog-gnutls -y</pre><br><pre lang=bash>sudo yum install rsyslog-gnutls -y</pre></br><pre lang=bash>sudo dnf install rsyslog-gnutls -y</pre> | <pre lang=bash>sudo apt install rsyslog-openssl -y</pre><br><pre lang=bash>sudo yum install rsyslog-openssl -y</pre></br><pre lang=bash>sudo dnf install rsyslog-openssl -y</pre> |
+
 ## Server Configuration
 - [rsyslog-tls.conf](rsyslog/rsyslog.d/rsyslog-tls.conf)
 
