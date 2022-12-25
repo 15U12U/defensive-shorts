@@ -2,27 +2,16 @@
 
 - ***This is a collection of default/common log locations in different systems.***
     - [System Logs](system.md)
+    - [Web Applications](web.md)
+    - [Database](database.md)
 
----
-## Apache Tomcat
-```
-C:\Program Files(x86)\Apache Software Foundation\Tomcat 7.0\Logs
-C:\apache-tomcat-8.0.35\apache-tomcat-8.0.35\logs\localhost.log
-C:\apache-tomcat-8.0.35\apache-tomcat-8.0.35\logs\localhost.*.log
-```
-## IIS
-```
-C:\inetpub\Logs\LogFiles
-```
+
+
 ## MSSQL
 ```
 C:\Program Files\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\Logs
 ```
-## Linux Auth/Secure
-```
-/var/log/secure
-/var/log/auth.log
-```
+
 ## MySQL
 ```
 /var/log/mysql/error.log
