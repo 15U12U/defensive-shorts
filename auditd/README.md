@@ -1,7 +1,7 @@
 # Linux Audit rules templates
 
-- [CentOS/RedHat/Oracle Audit Rules](centos-audit.rules)
-- [Debian/Ubuntu Audit Rules](ubuntu-audit.rules)
+- [CentOS/RedHat/Oracle Audit Rules](audit.rules/centos.rules)
+- [Debian/Ubuntu Audit Rules](audit.rules/ubuntu.rules)
 ---
 <br>
 
