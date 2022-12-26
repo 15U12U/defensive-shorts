@@ -82,14 +82,6 @@ C:
 │   │	│   ├── ssl.access_log
 │   │	│   └── ssl_log
 │   │	└── httpd_log
-│   │   ├── etc
-│   │	│   └── httpd
-│   │	│	└── logs
-│   │	│   	    ├── access_log
-│   │	│   	    └── error_log
-│   │   └── www
-│   │	    └── logs
-│   │		└── httpd_log
 │   └── www
 │	├── log
 │	│   ├── access_log
