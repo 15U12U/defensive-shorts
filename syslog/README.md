@@ -48,8 +48,14 @@
 ```
 
 ## Test Rsyslog configuration
+### RSyslog
 ```bash
 rsyslogd -N 5
+rsyslogd -N 1 -f /etc/rsyslog.conf
+```
+### Syslog-ng
+```bash
+syslog-ng --syntax-only
 ```
 ---
 
