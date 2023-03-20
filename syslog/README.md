@@ -19,16 +19,16 @@
 | 13     	| –        	| log audit                                	|
 | 14     	| –        	| log alert                                	|
 | 15     	| cron     	| clock daemon                             	|
-| 16     	| local0   	| local use 0 (local0)                     	|
-| 17     	| local1   	| local use 1 (local1)                     	|
-| 18     	| local2   	| local use 2 (local2)                     	|
-| 19     	| local3   	| local use 3 (local3)                     	|
-| 20     	| local4   	| local use 4 (local4)                     	|
-| 21     	| local5   	| local use 5 (local5)                     	|
-| 22     	| local6   	| local use 6 (local6)                     	|
-| 23     	| local7   	| local use 7 (local7)                     	|
+| 16     	| local0   	| local use 0                             	|
+| 17     	| local1   	| local use 1                             	|
+| 18     	| local2   	| local use 2                             	|
+| 19     	| local3   	| local use 3                             	|
+| 20     	| local4   	| local use 4                             	|
+| 21     	| local5   	| local use 5                             	|
+| 22     	| local6   	| local use 6                             	|
+| 23     	| local7   	| local use 7                             	|
 
-## Syslog Priority Levels
+## Syslog Severity Levels
 
 | Code 	| Severity      	| Keyword        	| Description                       	|
 | :---:	| :--------------	| :--------------	| :----------------------------------	|
@@ -41,6 +41,11 @@
 | 6    	| Informational 	| info           	| Informational messages.           	|
 | 7    	| Debug         	| debug          	| Debug-level messages.             	|
 ---
+
+## Syslog Priority
+```math
+(FacilityNumber * 8) + SeverityCode = PRI
+```
 
 ## Test Rsyslog configuration
 ```bash
