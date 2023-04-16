@@ -10,3 +10,4 @@
 - [List of User Rights Assignments](user-rights-assignment.md)
 - [SSL/TLS Certificate Guide](certificates.md)
 - [Generic Log File Locations](logs/README.md)
+- [Database Auditing Configuration Guide](db-audit.md)
