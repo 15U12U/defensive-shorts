@@ -35,6 +35,10 @@ SQL> SHOW PARAMETER AUDIT
 > 
 > _AUDIT_FILE_DEST specifies the operating system directory into which the audit trail is written when the AUDIT_TRAIL initialization parameter is set to **OS**, **XML**, or **XML, EXTENDED**._
 
+| Default Values                          | 
+| :-------------------------------------- |
+| _ORACLE_BASE_/admin/_ORACLE_SID_/adump  |
+| _ORACLE_HOME_/rdbms/audit               |
 
 
 ### Enable/Disable auditing
@@ -71,7 +75,11 @@ SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='KERN.EMERG' SCOPE=SPFILE;
 SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='LOCAL1.WARNING' SCOPE=SPFILE;
 ```
 
-
+### Examples of configuring audit file location
+```sql
+SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/opt/app/oracle/admin/db11/adump' SCOPE=SPFILE;
+SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
+```
 
 
 
