@@ -12,6 +12,7 @@
 ```sql
 SQL> SHOW PARAMETER AUDIT
 ```
+### Basic Audit Configuration Options
 #### AUDIT_TRAIL
 | Parameter     | Auditing Status    | Description                                                                                 |
 | :------------ | :----------------: | :------------------------------------------------------------------------------------------ |
@@ -85,19 +86,20 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | Privilege     | ALTER ANY PROCEDURE <br/> ALTER ANY TABLE <br/> ALTER DATABASE <br/> ALTER PROFILE <br/> ALTER SYSTEM <br/> ALTER USER <br/> AUDIT SYSTEM <br/> CREATE ANY JOB <br/> CREATE ANY LIBRARY <br/> CREATE ANY PROCEDURE <br/> CREATE ANY TABLE <br/> CREATE EXTERNAL JOB <br/> CREATE PUBLIC DATABASE LINK <br/> CREATE SESSION <br/> CREATE USER <br/> DROP ANY PROCEDURE <br/> DROP ANY TABLE <br/> DROP PROFILE <br/> DROP USER <br/> EXEMPT ACCESS POLICY <br/> GRANT ANY OBJECT PRIVILEGE <br/> GRANT ANY PRIVILEGE <br/> GRANT ANY ROLE |
 | Statement     | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT |
 
-### Audit Options
+### 'AUDIT' Options
 
-| Option              | Description                                                              |
-| :------------------ | :----------------------------------------------------------------------- |
-| ALL                 | Audit all statement options apart from the additional statement options. |
-| ALL STATEMENTS      | Audit all executions of **top-level SQL statements** that are issued directly by a user. Does not audit the statements executed within PL/SQL procedures or functions.                                                                                                                                             |
-| ALL PRIVILEGES      | Audit system privileges.                                                                                                                     |
-| IN SESSION CURRENT  | Limit auditing to the current session. Auditing will persist until the end of the session and cannot be stopped using the NOAUDIT statement. |
-| BY SESSION          | Audit system privileges.                                                |
-| BY ACCESS           | Audit system privileges.                                                |
-| WHENEVER SUCCESSFUL | Audit system privileges.                                                |
-| NETWORK             | Audit internal failures in the network layer.                           |
-| DIRECT_PATH LOAD    |   |
+| Option                  | Description                                                                                                                               |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| ALL                     | Audit all statement options apart from the additional statement options.                                                                  |
+| ALL STATEMENTS          | Audit all executions of **top-level SQL statements** that are issued directly by a user. Does not audit the statements executed within PL/SQL procedures or functions.                                                                                                                                       |
+| ALL PRIVILEGES          | Audit system privileges.                                                                                                                  |
+| IN SESSION CURRENT      | Limit auditing to the current session. Auditing will persist until the end of the session and cannot be stopped using the NOAUDIT statement.                                                                                                                                                            |
+| BY SESSION              | Write a single record for all SQL statements or operations of the same type executed on the same schema objects in the same session. Recommended to include the ```BY ACCESS``` clause for all ```AUDIT``` statements and if not explicitly specified, included by default.                                |
+| BY ACCESS               | Write one record for each audited statement and operation.                                                                                |
+| WHENEVER SUCCESSFUL     | Audit only SQL statements and operations that succeed.                                                                                    |
+| WHENEVER NOT SUCCESSFUL | Audit only SQL statements and operations that fail or result in errors.                                                                   |
+| NETWORK                 | Audit internal failures in the network layer.                                                                                             |
+| DIRECT_PATH LOAD        | Audit **SQL\*Loader** direct path loads.                                                                                                  |
 
 
 #### Examples
@@ -118,6 +120,8 @@ SQL> AUDIT <OPERATION> BY SESSION WHENEVER SUCCESSFUL;
 SQL> AUDIT <OPERATION> BY ACCESS  WHENEVER NOT SUCCESSFUL;
 
 SQL> AUDIT NETWORK;
+
+SQL> AUDIT DIRECT_PATH LOAD;
 ```
 
 
