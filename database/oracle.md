@@ -90,7 +90,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 
 | Option                  | Description                                                                                                                               |
 | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| ALL                     | Audit all statement options apart from the additional statement options.                                                                  |
+| ALL                     | Audit \*all statement options apart from the \*additional statement options.                                                              |
 | ALL STATEMENTS          | Audit all executions of **top-level SQL statements** that are issued directly by a user. Does not audit the statements executed within PL/SQL procedures or functions.                                                                                                                                       |
 | ALL PRIVILEGES          | Audit system privileges.                                                                                                                  |
 | IN SESSION CURRENT      | Limit auditing to the current session. Auditing will persist until the end of the session and cannot be stopped using the NOAUDIT statement.                                                                                                                                                            |
@@ -101,10 +101,10 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | NETWORK                 | Audit internal failures in the network layer.                                                                                             |
 | DIRECT_PATH LOAD        | Audit **SQL\*Loader** direct path loads.                                                                                                  |
 
-####
+#### Audit Statement Options
 
-| Shortcut             | SQL Statements and Operations Audited |
-| :------------------- | :------------------------------------ |
+| Shortcut             | SQL Statements and Operations Audited                                                                                                        |
+| :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
 | ALTER SYSTEM         | ALTER SYSTEM                                                                                                                                 |
 | CLUSTER              | CREATE CLUSTER <br> ALTER CLUSTER <br> DROP CLUSTER <br> TRUNCATE CLUSTER                                                                    |
 | CONTEXT              | CREATE CONTEXT <br> DROP CONTEXT                                                                                                             |
@@ -131,8 +131,32 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | TABLESPACE           | CREATE TABLESPACE <br> ALTER TABLESPACE <br> DROP TABLESPACE                                                                                 |
 | TRIGGER              | CREATE TRIGGER <br> ALTER TRIGGER <br> - with ENABLE and DISABLE clauses <br> DROP TRIGGER <br> ALTER TABLE <br> - with ENABLE ALL TRIGGERS clause <br> - and DISABLE ALL TRIGGERS clause                                                                                                                         |
 | TYPE                 | CREATE TYPE <br> CREATE TYPE BODY <br> ALTER TYPE <br> DROP TYPE <br> DROP TYPE BODY                                                         |
-| USER                 | CREATE USER <br> ALTER USER <br> DROP USER <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                                                              |
+| USER                 | CREATE USER <br> ALTER USER <br> DROP USER <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                                                    |
 | VIEW                 | CREATE VIEW <br> DROP VIEW                                                                                                                   |
+
+#### Additional Audit Statement Options
+
+| Shortcut          | SQL Statements and Operations Audited                                                                                          |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| ALTER SEQUENCE    | ALTER SEQUENCE                                                                                                                 |
+| ALTER TABLE       | ALTER TABLE                                                                                                                    |
+| COMMENT TABLE     | COMMENT ON TABLE _table, view, materialized view_ <br> COMMENT ON COLUMN _table.column, view.column, materialized view.column_ |
+| DELETE TABLE      | DELETE FROM _table, view_                                                                                                      |
+| EXECUTE DIRECTORY | Execution of any program in a directory                                                                                        |
+| EXECUTE PROCEDURE | CALL <br> Execution of any procedure or function or access to any variable, library, or cursor inside a package                |
+| GRANT DIRECTORY   | GRANT privilege ON directory <br> REVOKE privilege ON directory                                                                |
+| GRANT PROCEDURE   | GRANT privilege ON procedure, function, package <br> REVOKE privilege ON procedure, function, package                          |
+| GRANT SEQUENCE    | GRANT privilege ON sequence <br> REVOKE privilege ON sequence                                                                  |
+| GRANT TABLE       | GRANT privilege ON table, view, materialized view <br> REVOKE privilege ON table, view, materialized view                      |
+| GRANT TYPE        | GRANT privilege ON TYPE <br> REVOKE privilege ON TYPE                                                                          |
+| INSERT TABLE      | INSERT INTO _table, view_                                                                                                      |
+| LOCK TABLE        | LOCK TABLE _table, view_                                                                                                       |
+| READ DIRECTORY    | Read operations on a directory                                                                                                 |
+| SELECT SEQUENCE   | Any statement containing _sequence_.CURRVAL or _sequence_.NEXTVAL                                                              |
+| SELECT TABLE      | SELECT FROM table, view, materialized view                                                                                     |
+| UPDATE TABLE      | UPDATE table, view                                                                                                             |
+| WRITE DIRECTORY   | Write operations on a directory                                                                                                |
+
 
 #### Examples
 ```sql
