@@ -41,44 +41,27 @@ SQL> SHOW PARAMETER AUDIT
 | _ORACLE_HOME_/rdbms/audit               |
 
 
-### Enable/Disable auditing
-#### - Enable -
+### Configure Oracle DB Auditing
 ```sql
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=TRUE SCOPE=SPFILE;
-```
-OR one of the below commands
-```sql
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=DB SCOPE=SPFILE;
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=DB, EXTENDED SCOPE=SPFILE;
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=XML SCOPE=SPFILE;
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=XML, EXTENDED SCOPE=SPFILE;
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=OS SCOPE=SPFILE;
-```
-#### - Disable -
-```sql
-SQL> ALTER SYSTEM SET AUDIT_TRAIL=NONE SCOPE=SPFILE;
-```
+# 'AUDIT_TRAIL' Configuration
+SQL> ALTER SYSTEM SET AUDIT_TRAIL=DB SCOPE=SPFILE;                                      -- Enabling Auditing
+SQL> ALTER SYSTEM SET AUDIT_TRAIL=DB, EXTENDED SCOPE=SPFILE;                            -- Enabling Auditing
+SQL> ALTER SYSTEM SET AUDIT_TRAIL=XML SCOPE=SPFILE;                                     -- Enabling Auditing
+SQL> ALTER SYSTEM SET AUDIT_TRAIL=XML, EXTENDED SCOPE=SPFILE;                           -- Enabling Auditing
+SQL> ALTER SYSTEM SET AUDIT_TRAIL=OS SCOPE=SPFILE;                                      -- Enabling Auditing
+SQL> ALTER SYSTEM SET AUDIT_TRAIL=NONE SCOPE=SPFILE;                                    -- Disabling Auditing
 
-### Enable/Disable SYS operations auditing
-#### - Enable -
-```sql
-SQL> ALTER SYSTEM SET AUDIT_SYS_OPERATIONS=TRUE SCOPE=SPFILE;
-```
-#### - Disable -
-```sql
-SQL> ALTER SYSTEM SET AUDIT_SYS_OPERATIONS=FALSE SCOPE=SPFILE;
-```
+# 'AUDIT_SYS_OPERATIONS' Configuration
+SQL> ALTER SYSTEM SET AUDIT_SYS_OPERATIONS=TRUE SCOPE=SPFILE;                           -- Enabling SYS Auditing
+SQL> ALTER SYSTEM SET AUDIT_SYS_OPERATIONS=FALSE SCOPE=SPFILE;                          -- Disabling SYS Auditing
 
-### Examples of configuring audit syslog levels
-```sql
-SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='KERN.EMERG' SCOPE=SPFILE;
-SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='LOCAL1.WARNING' SCOPE=SPFILE;
-```
+# 'AUDIT_SYSLOG_LEVEL' Configuration
+SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='KERN.EMERG' SCOPE=SPFILE;                     -- Configuring Audit Syslog Level
+SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='LOCAL1.WARNING' SCOPE=SPFILE;                 -- Configuring Audit Syslog Level
 
-### Examples of configuring audit file location
-```sql
-SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/opt/app/oracle/admin/db11/adump' SCOPE=SPFILE;
-SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
+# 'AUDIT_FILE_DEST' Configuration
+SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/opt/app/oracle/admin/db11/adump' SCOPE=SPFILE;  -- Configuring Audit File Location 
+SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;             -- Configuring Audit File Location
 ```
 
 
