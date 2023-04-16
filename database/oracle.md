@@ -84,16 +84,16 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 
 | Statement Type                     | Description                                                                         | Example                               |
 | :--------------------------------- | :---------------------------------------------------------------------------------- | :------------------------------------ |
-| DDL (Data Definition Language)     | Define the structure of a database and objects, such as tables, views, and indexes. | CREATE, ALTER, DROP, TRUNCATE, RENAME |
-| DML (Data Manipulation Language)   | Manipulate data stored in a database.                                               | SELECT, INSERT, UPDATE, DELETE, MERGE |
-| DCL (Data Control Language)        | Control access to data stored in a database.                                        | GRANT, REVOKE                         |
-| TCL (Transaction Control Language) | Manage transactions in a database.                                                  | COMMIT, ROLLBACK, SAVEPOINT           |
+| DDL (Data Definition Language)     | Define the structure of a database and objects, such as tables, views, and indexes. | ```CREATE```, ```ALTER```, ```DROP```, ```TRUNCATE```, ```RENAME``` |
+| DML (Data Manipulation Language)   | Manipulate data stored in a database.                                               | ```SELECT```, ```INSERT```, ```UPDATE```, ```DELETE```, ```MERGE```    |
+| DCL (Data Control Language)        | Control access to data stored in a database.                                        | ```GRANT```, ```REVOKE```                                              |
+| TCL (Transaction Control Language) | Manage transactions in a database.                                                  | ```COMMIT```, ```ROLLBACK```, ```SAVEPOINT```              |
 
 #### Security-relevant SQL Statements and Privileges audited by Default
 | Level         | Audit                                                                                                                                               |
 | :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Privilege     | ALTER ANY PROCEDURE <br/> ALTER ANY TABLE <br/> ALTER DATABASE <br/> ALTER PROFILE <br/> ALTER SYSTEM <br/> ALTER USER <br/> AUDIT SYSTEM <br/> CREATE ANY JOB <br/> CREATE ANY LIBRARY <br/> CREATE ANY PROCEDURE <br/> CREATE ANY TABLE <br/> CREATE EXTERNAL JOB <br/> CREATE PUBLIC DATABASE LINK <br/> CREATE SESSION <br/> CREATE USER <br/> DROP ANY PROCEDURE <br/> DROP ANY TABLE <br/> DROP PROFILE <br/> DROP USER <br/> EXEMPT ACCESS POLICY <br/> GRANT ANY OBJECT PRIVILEGE <br/> GRANT ANY PRIVILEGE <br/> GRANT ANY ROLE                                                                                                                        |
-| Statement     | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT                                                   |
+| Privilege     | ```ALTER ANY PROCEDURE``` <br/> ```ALTER ANY TABLE``` <br/> ```ALTER DATABASE``` <br/> ```ALTER PROFILE``` <br/> ```ALTER SYSTEM``` <br/> ```ALTER USER``` <br/> ```AUDIT SYSTEM``` <br/> ```CREATE ANY JOB``` <br/> ```CREATE ANY LIBRARY``` <br/> ```CREATE ANY PROCEDURE``` <br/> ```CREATE ANY TABLE``` <br/> ```CREATE EXTERNAL JOB``` <br/> ```CREATE PUBLIC DATABASE LINK``` <br/> ```CREATE SESSION``` <br/> ```CREATE USER``` <br/> ```DROP ANY PROCEDURE``` <br/> ```DROP ANY TABLE``` <br/> ```DROP PROFILE``` <br/> ```DROP USER``` <br/> ```EXEMPT ACCESS POLICY``` <br/> ```GRANT ANY OBJECT PRIVILEGE``` <br/> ```GRANT ANY PRIVILEGE``` <br/> ```GRANT ANY ROLE```                                                                                                                                                  |
+| Statement     | ```ROLE``` <br/> ```SYSTEM AUDIT``` <br/> ```PUBLIC SYNONYM``` <br/> ```DATABASE LINK``` <br/> ```PROFILE``` <br/> ```SYSTEM GRANT```               |
 
 ### 'AUDIT' Options
 
@@ -102,7 +102,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | ALL                     | Audit \*all statement options apart from the \*additional statement options.                                                              |
 | ALL STATEMENTS          | Audit all executions of **top-level SQL statements** that are issued directly by a user. Does not audit the statements executed within PL/SQL procedures or functions.                                                                                                                                       |
 | ALL PRIVILEGES          | Audit system privileges.                                                                                                                  |
-| IN SESSION CURRENT      | Limit auditing to the current session. Auditing will persist until the end of the session and cannot be stopped using the NOAUDIT statement.                                                                                                                                                            |
+| IN SESSION CURRENT      | Limit auditing to the current session. Auditing will persist until the end of the session and cannot be stopped using the ```NOAUDIT``` statement.                                                                                                                                                            |
 | ON DEFAULT              | Establish a default auditing options for subsequently created objects.                                                                    |
 | BY SESSION              | Write a single record for all SQL statements or operations of the same type executed on the same schema objects in the same session. Recommended to include the ```BY ACCESS``` clause for all ```AUDIT``` statements and if not explicitly specified, included by default.                                |
 | BY ACCESS               | Write one record for each audited statement and operation.                                                                                |
@@ -115,57 +115,57 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 
 | Shortcut             | SQL Statements and Operations Audited                                                                                                        |
 | :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| ALTER SYSTEM         | ALTER SYSTEM                                                                                                                                 |
-| CLUSTER              | CREATE CLUSTER <br> ALTER CLUSTER <br> DROP CLUSTER <br> TRUNCATE CLUSTER                                                                    |
-| CONTEXT              | CREATE CONTEXT <br> DROP CONTEXT                                                                                                             |
-| DATABASE LINK        | CREATE DATABASE LINK <br> ALTER DATABASE LINK <br> DROP DATABASE LINK                                                                        |
-| DIMENSION            | CREATE DIMENSION <br> ALTER DIMENSION <br> DROP DIMENSION                                                                                    |
-| DIRECTORY            | CREATE DIRECTORY <br> DROP DIRECTORY                                                                                                         |
-| INDEX                | CREATE INDEX <br> ALTER INDEX <br> ANALYZE INDEX <br> DROP INDEX                                                                             |
-| MATERIALIZED VIEW    | CREATE MATERIALIZED VIEW <br> ALTER MATERIALIZED VIEW <br> DROP MATERIALIZED VIEW                                                            |
+| ALTER SYSTEM         | ```ALTER SYSTEM```                                                                                                                           |
+| CLUSTER              | ```CREATE CLUSTER``` <br> ```ALTER CLUSTER``` <br> ```DROP CLUSTER``` <br> ```TRUNCATE CLUSTER```                                            |
+| CONTEXT              | ```CREATE CONTEXT``` <br> ```DROP CONTEXT```                                                                                                 |
+| DATABASE LINK        | ```CREATE DATABASE LINK``` <br> ```ALTER DATABASE LINK``` <br> ```DROP DATABASE LINK```                                                      |
+| DIMENSION            | ```CREATE DIMENSION``` <br> ```ALTER DIMENSION``` <br> ```DROP DIMENSION```                                                                  |
+| DIRECTORY            | ```CREATE DIRECTORY``` <br> ```DROP DIRECTORY```                                                                                             |
+| INDEX                | ```CREATE INDEX``` <br> ```ALTER INDEX``` <br> ```ANALYZE INDEX``` <br> ```DROP INDEX```                                                     |
+| MATERIALIZED VIEW    | ```CREATE MATERIALIZED VIEW``` <br> ```ALTER MATERIALIZED VIEW``` <br> ```DROP MATERIALIZED VIEW```                                          |
 | NOT EXISTS           | _All SQL statements that fail because a specified object does not exist._                                                                    |
-| OUTLINE              | CREATE OUTLINE <br> ALTER OUTLINE <br> DROP OUTLINE                                                                                          |
-| PLUGGABLE DATABASE   | CREATE PLUGGABLE DATABASE <br> ALTER PLUGGABLE DATABASE <br> DROP PLUGGABLE DATABASE                                                         |
-| PROCEDURE            | CREATE FUNCTION <br> CREATE LIBRARY <br> CREATE PACKAGE <br> CREATE PACKAGE BODY <br> CREATE PROCEDURE <br> DROP FUNCTION <br> DROP LIBRARY <br> DROP PACKAGE <br> DROP PROCEDURE                                                                                                                                 |
-| PROFILE              | CREATE PROFILE <br> ALTER PROFILE <br> DROP PROFILE                                                                                          |
-| PUBLIC DATABASE LINK | CREATE PUBLIC DATABASE LINK <br> ALTER PUBLIC DATABASE LINK <br> DROP PUBLIC DATABASE LINK                                                   |
-| PUBLIC SYNONYM       | CREATE PUBLIC SYNONYM <br> DROP PUBLIC SYNONYM                                                                                               |
-| ROLE                 | CREATE ROLE <br> ALTER ROLE <br> DROP ROLE <br> SET ROLE                                                                                     |
-| ROLLBACK SEGMENT     | CREATE ROLLBACK SEGMENT <br> ALTER ROLLBACK SEGMENT <br> DROP ROLLBACK SEGMENT                                                               |
-| SEQUENCE             | CREATE SEQUENCE <br> DROP SEQUENCE                                                                                                           |
+| OUTLINE              | ```CREATE OUTLINE``` <br> ```ALTER OUTLINE``` <br> ```DROP OUTLINE```                                                                        |
+| PLUGGABLE DATABASE   | ```CREATE PLUGGABLE DATABASE``` <br> ```ALTER PLUGGABLE DATABASE``` <br> ```DROP PLUGGABLE DATABASE```                                       |
+| PROCEDURE            | ```CREATE FUNCTION``` <br> ```CREATE LIBRARY``` <br> ```CREATE PACKAGE``` <br> ```CREATE PACKAGE BODY``` <br> ```CREATE PROCEDURE``` <br> ```DROP FUNCTION``` <br> ```DROP LIBRARY``` <br> ```DROP PACKAGE``` <br> ```DROP PROCEDURE```                                                                         |
+| PROFILE              | ```CREATE PROFILE``` <br> ```ALTER PROFILE``` <br> ```DROP PROFILE```                                                                        |
+| PUBLIC DATABASE LINK | ```CREATE PUBLIC DATABASE LINK``` <br> ```ALTER PUBLIC DATABASE LINK``` <br> ```DROP PUBLIC DATABASE LINK```                                 |
+| PUBLIC SYNONYM       | ```CREATE PUBLIC SYNONYM``` <br> ```DROP PUBLIC SYNONYM```                                                                                   |
+| ROLE                 | ```CREATE ROLE``` <br> ```ALTER ROLE``` <br> ```DROP ROLE``` <br> ```SET ROLE```                                                             |
+| ROLLBACK SEGMENT     | ```CREATE ROLLBACK SEGMENT``` <br> ```ALTER ROLLBACK SEGMENT``` <br> ```DROP ROLLBACK SEGMENT```                                             |
+| SEQUENCE             | ```CREATE SEQUENCE``` <br> ```DROP SEQUENCE```                                                                                               |
 | SESSION              | _Logons_                                                                                                                                     |
-| SYNONYM              | CREATE SYNONYM <br> DROP SYNONYM                                                                                                             |
-| SYSTEM AUDIT         | AUDIT _sql_statements_ <br> NOAUDIT _sql_statements_                                                                                         |
-| SYSTEM GRANT         | GRANT _system_privileges_and_roles_ <br> REVOKE _system_privileges_and_roles_                                                                |
-| TABLE                | CREATE TABLE <br> DROP TABLE <br> TRUNCATE TABLE                                                                                             |
-| TABLESPACE           | CREATE TABLESPACE <br> ALTER TABLESPACE <br> DROP TABLESPACE                                                                                 |
-| TRIGGER              | CREATE TRIGGER <br> ALTER TRIGGER <br> - with ENABLE and DISABLE clauses <br> DROP TRIGGER <br> ALTER TABLE <br> - with ENABLE ALL TRIGGERS clause <br> - and DISABLE ALL TRIGGERS clause                                                                                                                         |
-| TYPE                 | CREATE TYPE <br> CREATE TYPE BODY <br> ALTER TYPE <br> DROP TYPE <br> DROP TYPE BODY                                                         |
-| USER                 | CREATE USER <br> ALTER USER <br> DROP USER <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                                                    |
-| VIEW                 | CREATE VIEW <br> DROP VIEW                                                                                                                   |
+| SYNONYM              | ```CREATE SYNONYM``` <br> ```DROP SYNONYM```                                                                                                 |
+| SYSTEM AUDIT         | ```AUDIT _sql_statements_``` <br> ```NOAUDIT _sql_statements_```                                                                             |
+| SYSTEM GRANT         | ```GRANT _system_privileges_and_roles_``` <br> ```REVOKE _system_privileges_and_roles_```                                                    |
+| TABLE                | ```CREATE TABLE``` <br> ```DROP TABLE``` <br> ```TRUNCATE TABLE```                                                                           |
+| TABLESPACE           | ```CREATE TABLESPACE``` <br> ```ALTER TABLESPACE``` <br> ```DROP TABLESPACE```                                                               |
+| TRIGGER              | ```CREATE TRIGGER``` <br> ```ALTER TRIGGER``` <br> - with **ENABLE** and **DISABLE** clauses <br> ```DROP TRIGGER``` <br> ```ALTER TABLE``` <br> - with **ENABLE ALL TRIGGERS** clause <br> - and **DISABLE ALL TRIGGERS** clause                                                                                 |
+| TYPE                 | ```CREATE TYPE``` <br> ```CREATE TYPE BODY``` <br> ```ALTER TYPE``` <br> ```DROP TYPE``` <br> ```DROP TYPE BODY```                           |
+| USER                 | ```CREATE USER``` <br> ```ALTER USER``` <br> ```DROP USER``` <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                            |
+| VIEW                 | ```CREATE VIEW``` <br> ```DROP VIEW```                                                                                                       |
 
 #### Additional Audit Statement Options
 
-| Shortcut          | SQL Statements and Operations Audited                                                                                          |
-| :---------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| ALTER SEQUENCE    | ALTER SEQUENCE                                                                                                                 |
-| ALTER TABLE       | ALTER TABLE                                                                                                                    |
-| COMMENT TABLE     | COMMENT ON TABLE _table, view, materialized view_ <br> COMMENT ON COLUMN _table.column, view.column, materialized view.column_ |
-| DELETE TABLE      | DELETE FROM _table, view_                                                                                                      |
-| EXECUTE DIRECTORY | Execution of any program in a directory                                                                                        |
-| EXECUTE PROCEDURE | CALL <br> Execution of any procedure or function or access to any variable, library, or cursor inside a package                |
-| GRANT DIRECTORY   | GRANT privilege ON directory <br> REVOKE privilege ON directory                                                                |
-| GRANT PROCEDURE   | GRANT privilege ON procedure, function, package <br> REVOKE privilege ON procedure, function, package                          |
-| GRANT SEQUENCE    | GRANT privilege ON sequence <br> REVOKE privilege ON sequence                                                                  |
-| GRANT TABLE       | GRANT privilege ON table, view, materialized view <br> REVOKE privilege ON table, view, materialized view                      |
-| GRANT TYPE        | GRANT privilege ON TYPE <br> REVOKE privilege ON TYPE                                                                          |
-| INSERT TABLE      | INSERT INTO _table, view_                                                                                                      |
-| LOCK TABLE        | LOCK TABLE _table, view_                                                                                                       |
-| READ DIRECTORY    | Read operations on a directory                                                                                                 |
-| SELECT SEQUENCE   | Any statement containing _sequence_.CURRVAL or _sequence_.NEXTVAL                                                              |
-| SELECT TABLE      | SELECT FROM _table, view, materialized view_                                                                                   |
-| UPDATE TABLE      | UPDATE _table, view_                                                                                                           |
-| WRITE DIRECTORY   | Write operations on a directory                                                                                                |
+| Shortcut          | SQL Statements and Operations Audited                                                                                                      |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| ALTER SEQUENCE    | ```ALTER SEQUENCE```                                                                                                                       |
+| ALTER TABLE       | ```ALTER TABLE```                                                                                                                          |
+| COMMENT TABLE     | ```COMMENT ON TABLE _table, view, materialized view_``` <br> ```COMMENT ON COLUMN _table.column, view.column, materialized view.column_``` |
+| DELETE TABLE      | ```DELETE FROM _table, view_```                                                                                                            |
+| EXECUTE DIRECTORY | _Execution of any program in a directory_                                                                                                  |
+| EXECUTE PROCEDURE | ```CALL``` <br> _Execution of any procedure or function or access to any variable, library, or cursor inside a package_                    |
+| GRANT DIRECTORY   | ```GRANT privilege ON directory``` <br> ```REVOKE privilege ON directory```                                                                |
+| GRANT PROCEDURE   | ```GRANT privilege ON procedure, function, package``` <br> ```REVOKE privilege ON procedure, function, package```                          |
+| GRANT SEQUENCE    | ```GRANT privilege ON sequence``` <br> ```REVOKE privilege ON sequence```                                                                  |
+| GRANT TABLE       | ```GRANT privilege ON table, view, materialized view``` <br> ```REVOKE privilege ON table, view, materialized view```                      |
+| GRANT TYPE        | ```GRANT privilege ON TYPE``` <br> ```REVOKE privilege ON TYPE```                                                                          |
+| INSERT TABLE      | ```INSERT INTO _table, view_```                                                                                                            |
+| LOCK TABLE        | ```LOCK TABLE _table, view_```                                                                                                             |
+| READ DIRECTORY    | _Read operations on a directory_                                                                                                           |
+| SELECT SEQUENCE   | _Any statement containing_ ```_sequence_.CURRVAL``` _or_ ```_sequence_.NEXTVAL```                                                          |
+| SELECT TABLE      | ```SELECT FROM _table, view, materialized view_```                                                                                         |
+| UPDATE TABLE      | ```UPDATE _table, view_```                                                                                                                 |
+| WRITE DIRECTORY   | _Write operations on a directory_                                                                                                          |
 
 
 #### Examples
