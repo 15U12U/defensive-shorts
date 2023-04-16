@@ -94,6 +94,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | ALL STATEMENTS          | Audit all executions of **top-level SQL statements** that are issued directly by a user. Does not audit the statements executed within PL/SQL procedures or functions.                                                                                                                                       |
 | ALL PRIVILEGES          | Audit system privileges.                                                                                                                  |
 | IN SESSION CURRENT      | Limit auditing to the current session. Auditing will persist until the end of the session and cannot be stopped using the NOAUDIT statement.                                                                                                                                                            |
+| ON DEFAULT              | Establish a default auditing options for subsequently created objects.                                                                    |
 | BY SESSION              | Write a single record for all SQL statements or operations of the same type executed on the same schema objects in the same session. Recommended to include the ```BY ACCESS``` clause for all ```AUDIT``` statements and if not explicitly specified, included by default.                                |
 | BY ACCESS               | Write one record for each audited statement and operation.                                                                                |
 | WHENEVER SUCCESSFUL     | Audit only SQL statements and operations that succeed.                                                                                    |
@@ -153,8 +154,8 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | LOCK TABLE        | LOCK TABLE _table, view_                                                                                                       |
 | READ DIRECTORY    | Read operations on a directory                                                                                                 |
 | SELECT SEQUENCE   | Any statement containing _sequence_.CURRVAL or _sequence_.NEXTVAL                                                              |
-| SELECT TABLE      | SELECT FROM table, view, materialized view                                                                                     |
-| UPDATE TABLE      | UPDATE table, view                                                                                                             |
+| SELECT TABLE      | SELECT FROM _table, view, materialized view_                                                                                   |
+| UPDATE TABLE      | UPDATE _table, view_                                                                                                           |
 | WRITE DIRECTORY   | Write operations on a directory                                                                                                |
 
 
@@ -165,15 +166,25 @@ SQL> AUDIT ALL STATEMENTS;
 SQL> AUDIT ALL PRIVILEGES;
 
 SQL> AUDIT <OPERATION> IN SESSION CURRENT;
+SQL> AUDIT SELECT IN SESSION CURRENT;                                  --Example
+
+SQL> AUDIT <OPERATION> ON DEFAULT;
+SQL> AUDIT ALTER, GRANT, INSERT, UPDATE, DELETE ON DEFAULT;            --Example
 
 SQL> AUDIT <OPERATION> BY SESSION;
 SQL> AUDIT <OPERATION> BY ACCESS;
+SQL> AUDIT DELETE BY SESSION;                                          --Example
+SQL> AUDIT UPDATE BY ACCESS;                                           --Example
 
 SQL> AUDIT <OPERATION> WHENEVER SUCCESSFUL;
 SQL> AUDIT <OPERATION> WHENEVER NOT SUCCESSFUL;
+SQL> AUDIT ROLE WHENEVER SUCCESSFUL;                                   --Example
+SQL> AUDIT ROLE WHENEVER NOT SUCCESSFUL;                               --Example
 
 SQL> AUDIT <OPERATION> BY SESSION WHENEVER SUCCESSFUL;
-SQL> AUDIT <OPERATION> BY ACCESS  WHENEVER NOT SUCCESSFUL;
+SQL> AUDIT <OPERATION> BY ACCESS WHENEVER NOT SUCCESSFUL;
+SQL> AUDIT SELECT ON hr.employees BY SESSION WHENEVER NOT SUCCESSFUL;  --Example
+SQL> AUDIT SELECT ON hr.employees BY ACCESS WHENEVER SUCCESSFUL;       --Example
 
 SQL> AUDIT NETWORK;
 
