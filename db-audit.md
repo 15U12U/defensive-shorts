@@ -49,6 +49,7 @@ SQL> SHOW PARAMETER AUDIT
 | _ORACLE_HOME_/rdbms/audit               |
 
 
+
 ### Configure Oracle DB Auditing
 ```sql
 # 'AUDIT_TRAIL' Configuration
@@ -71,6 +72,16 @@ SQL> ALTER SYSTEM SET AUDIT_SYSLOG_LEVEL='LOCAL1.WARNING' SCOPE=SPFILE;         
 SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/opt/app/oracle/admin/db11/adump' SCOPE=SPFILE;  -- Configuring Audit File Location 
 SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;             -- Configuring Audit File Location
 ```
+
+# Security-relevant SQL Statements and Privileges audited by Default
+| Type          | Audit                                                                                             |
+| :------------ | :------------------------------------------------------------------------------------------------ |
+| Privilege     | ALTER ANY PROCEDURE <br/> ALTER ANY TABLE <br/> ALTER DATABASE <br/> ALTER PROFILE <br/> ALTER SYSTEM <br/> ALTER USER <br/> AUDIT SYSTEM <br/> CREATE ANY JOB <br/> CREATE ANY LIBRARY <br/> CREATE ANY PROCEDURE <br/> CREATE ANY TABLE <br/> CREATE EXTERNAL JOB <br/> CREATE PUBLIC DATABASE LINK <br/> CREATE SESSION <br/> CREATE USER <br/> DROP ANY PROCEDURE <br/> DROP ANY TABLE <br/> DROP PROFILE <br/> DROP USER <br/> EXEMPT ACCESS POLICY <br/> GRANT ANY OBJECT PRIVILEGE <br/> GRANT ANY PRIVILEGE <br/> GRANT ANY ROLE |
+| SQL Statement | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT |
+
+
+### Audit Levels
+
 
 
 
