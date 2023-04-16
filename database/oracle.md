@@ -101,6 +101,38 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | NETWORK                 | Audit internal failures in the network layer.                                                                                             |
 | DIRECT_PATH LOAD        | Audit **SQL\*Loader** direct path loads.                                                                                                  |
 
+####
+
+| Shortcut             | SQL Statements and Operations Audited |
+| :------------------- | :------------------------------------ |
+| ALTER SYSTEM         | ALTER SYSTEM                                                                                                                                 |
+| CLUSTER              | CREATE CLUSTER <br> ALTER CLUSTER <br> DROP CLUSTER <br> TRUNCATE CLUSTER                                                                    |
+| CONTEXT              | CREATE CONTEXT <br> DROP CONTEXT                                                                                                             |
+| DATABASE LINK        | CREATE DATABASE LINK <br> ALTER DATABASE LINK <br> DROP DATABASE LINK                                                                        |
+| DIMENSION            | CREATE DIMENSION <br> ALTER DIMENSION <br> DROP DIMENSION                                                                                    |
+| DIRECTORY            | CREATE DIRECTORY <br> DROP DIRECTORY                                                                                                         |
+| INDEX                | CREATE INDEX <br> ALTER INDEX <br> ANALYZE INDEX <br> DROP INDEX                                                                             |
+| MATERIALIZED VIEW    | CREATE MATERIALIZED VIEW <br> ALTER MATERIALIZED VIEW <br> DROP MATERIALIZED VIEW                                                            |
+| NOT EXISTS           | _All SQL statements that fail because a specified object does not exist._                                                                    |
+| OUTLINE              | CREATE OUTLINE <br> ALTER OUTLINE <br> DROP OUTLINE                                                                                          |
+| PLUGGABLE DATABASE   | CREATE PLUGGABLE DATABASE <br> ALTER PLUGGABLE DATABASE <br> DROP PLUGGABLE DATABASE                                                         |
+| PROCEDURE            | CREATE FUNCTION <br> CREATE LIBRARY <br> CREATE PACKAGE <br> CREATE PACKAGE BODY <br> CREATE PROCEDURE <br> DROP FUNCTION <br> DROP LIBRARY <br> DROP PACKAGE <br> DROP PROCEDURE                                                                                                                                 |
+| PROFILE              | CREATE PROFILE <br> ALTER PROFILE <br> DROP PROFILE                                                                                          |
+| PUBLIC DATABASE LINK | CREATE PUBLIC DATABASE LINK <br> ALTER PUBLIC DATABASE LINK <br> DROP PUBLIC DATABASE LINK                                                   |
+| PUBLIC SYNONYM       | CREATE PUBLIC SYNONYM <br> DROP PUBLIC SYNONYM                                                                                               |
+| ROLE                 | CREATE ROLE <br> ALTER ROLE <br> DROP ROLE <br> SET ROLE                                                                                     |
+| ROLLBACK SEGMENT     | CREATE ROLLBACK SEGMENT <br> ALTER ROLLBACK SEGMENT <br> DROP ROLLBACK SEGMENT                                                               |
+| SEQUENCE             | CREATE SEQUENCE <br> DROP SEQUENCE                                                                                                           |
+| SESSION              | _Logons_                                                                                                                                     |
+| SYNONYM              | CREATE SYNONYM <br> DROP SYNONYM                                                                                                             |
+| SYSTEM AUDIT         | AUDIT _sql_statements_ <br> NOAUDIT _sql_statements_                                                                                         |
+| SYSTEM GRANT         | GRANT _system_privileges_and_roles_ <br> REVOKE _system_privileges_and_roles_                                                                |
+| TABLE                | CREATE TABLE <br> DROP TABLE <br> TRUNCATE TABLE                                                                                             |
+| TABLESPACE           | CREATE TABLESPACE <br> ALTER TABLESPACE <br> DROP TABLESPACE                                                                                 |
+| TRIGGER              | CREATE TRIGGER <br> ALTER TRIGGER <br> - with ENABLE and DISABLE clauses <br> DROP TRIGGER <br> ALTER TABLE <br> - with ENABLE ALL TRIGGERS clause <br> - and DISABLE ALL TRIGGERS clause                                                                                                                         |
+| TYPE                 | CREATE TYPE <br> CREATE TYPE BODY <br> ALTER TYPE <br> DROP TYPE <br> DROP TYPE BODY                                                         |
+| USER                 | CREATE USER <br> ALTER USER <br> DROP USER <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                                                              |
+| VIEW                 | CREATE VIEW <br> DROP VIEW                                                                                                                   |
 
 #### Examples
 ```sql
