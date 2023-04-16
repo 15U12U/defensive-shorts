@@ -14,14 +14,14 @@ SQL> SHOW PARAMETER AUDIT
 ```
 ### Basic Audit Configuration Options
 #### AUDIT_TRAIL
-| Parameter     | Auditing Status    | Description                                                                                 |
-| :------------ | :----------------: | :------------------------------------------------------------------------------------------ |
-| NONE          | :x:                | Auditing is disabled.                                                                       |
-| DB            | :heavy_check_mark: | Write the standard audit content to SYS.AUD$ table.                                         |
-| DB, EXTENDED  | :heavy_check_mark: | Similar to DB, but the SQL_BIND and SQL_TEXT columns are also populated for SYS.AUD$ table. |
-| XML           | :heavy_check_mark: | Write the standard audit content and FGA audit content to an XML formatted file.            |
-| XML, EXTENDED | :heavy_check_mark: | Similar to XML, but the SQL_BIND and SQL_TEXT columns are also populated in XML file.       |
-| OS            | :heavy_check_mark: | Write the standard audit content to text files.                                             |
+| Parameter     | Auditing Status    | Description                                                                                               |
+| :------------ | :----------------: | :-------------------------------------------------------------------------------------------------------- |
+| NONE          | :x:                | Auditing is disabled.                                                                                     |
+| DB            | :heavy_check_mark: | Write the standard audit content to _**SYS.AUD$**_ table.                                                 |
+| DB, EXTENDED  | :heavy_check_mark: | Similar to **DB**, but the _SQL_BIND_ and _SQL_TEXT_ columns are also populated for _**SYS.AUD$**_ table. |
+| XML           | :heavy_check_mark: | Write the standard audit content and FGA audit content to an XML formatted file.                          |
+| XML, EXTENDED | :heavy_check_mark: | Similar to **XML**, but the _SQL_BIND_ and _SQL_TEXT_ columns are also populated in XML file.             |
+| OS            | :heavy_check_mark: | Write the standard audit content to text files.                                                           |
 
 #### AUDIT_SYS_OPERATIONS
 | Parameter    | Auditing Status    | Description                                                                                 |
