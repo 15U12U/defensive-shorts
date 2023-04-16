@@ -34,10 +34,10 @@ SQL> SHOW PARAMETER AUDIT
 > 
 > _AUDIT_SYSLOG_LEVEL allows SYS and standard OS audit records to be written to the system audit log using the SYSLOG utility._
 
-| Parameter | Description                                                                                                                                        |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| facility  | USER <br> LOCAL[0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7] <br> SYSLOG <br> DAEMON <br> KERN <br> MAIL <br> AUTH <br> LPR <br> NEWS <br> UUCP <br> CRON |
-| priority  | NOTICE <br> INFO <br> DEBUG <br> WARNING <br> ERR <br> CRIT <br> ALERT <br> EMERG                                                                  |
+| Type      | Available Parameters                                                                              |
+| :-------- | :------------------------------------------------------------------------------------------------ |
+| facility  | `USER` <br> `LOCAL0` \| `LOCAL1` \| `LOCAL2` \| `LOCAL3` \| `LOCAL4` \| `LOCAL5` \| `LOCAL6` \| `LOCAL7` <br> `SYSLOG` <br> `DAEMON` <br> `KERN` <br> `MAIL` <br> `AUTH` <br> `LPR` <br> `NEWS` <br> `UUCP` <br> `CRON` |
+| priority  | `NOTICE` <br> `INFO` <br> `DEBUG` <br> `WARNING` <br> `ERR` <br> `CRIT` <br> `ALERT` <br> `EMERG` |
 
 #### AUDIT_FILE_DEST
 > **Note**  
