@@ -204,5 +204,41 @@ SQL> NOAUDIT <OPERATION>;
 SQL> NOAUDIT NETWORK;                                                  --Example
 ```
 
+### Oracle FGA - Fine Grained Auditing (DBMS_FGA)
+#### DBMS_FGA Subprograms
+
+| Subprogram     | Description                                                                   |
+| :------------- | :---------------------------------------------------------------------------- |
+| ADD_POLICY     | Creates an audit policy using the supplied predicate as the audit condition.  |
+| DROP_POLICY    | Drops an audit policy.                                                        |
+| ENABLE_POLICY  | Enables an audit policy.                                                      |
+| DISABLE_POLICY | Disables an audit policy.                                                     |
+
+
+##### Example
+```sql
+DBMS_FGA.ADD_POLICY (
+   object_schema      =>  'scott',
+   object_name        =>  'emp',
+   policy_name        =>  'mypolicy1',
+   audit_condition    =>  'sal < 100',
+   audit_column       =>  'comm,sal',
+   handler_schema     =>   NULL,
+   handler_module     =>   NULL,
+   enable             =>   TRUE,
+   statement_types    =>  'INSERT, UPDATE',
+   audit_column_opts  =>   DBMS_FGA.ANY_COLUMNS,
+   policy_owner       =>  'sec_admin);
+
+
+
+
+
+
+```
+
+
+
+
 
 ## Unified Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
