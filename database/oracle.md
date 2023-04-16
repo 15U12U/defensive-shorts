@@ -1,5 +1,5 @@
-# Database Auditing Configuration Guide
-## Oracle Database Auditing Milestones
+# Oracle Database Audit Configuration Guide
+## Auditing Milestones
 | Year | Version      | Milestone                         |
 | :--- | :----------- | :-------------------------------- |
 | 1992 | Oracle 7     | Introduced Traditional auditing.  |
