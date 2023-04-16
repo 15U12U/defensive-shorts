@@ -1,5 +1,13 @@
 # Database Auditing Configuration Guide
-## Oracle Database - 9i, 10g, 11g
+## Oracle Database Auditing Milestones
+| Year | Version      | Milestone                         |
+| :--- | :----------- | :-------------------------------- |
+| 1992 | Oracle 7     | Introduced Traditional auditing.  |
+| 2002 | Oracle 9iR2  | Introduced Fine-grained auditing. |
+| 2013 | Oracle 12cR1 | Introduced Unified auditing.      |
+| 2021 | Oracle 21c   | Traditional auditing deprecated.  |
+
+## Traditional Oracle Database Auditing - 12.1 or lower (ex: 9i, 10g, 11g)
 ### Check the status of auditing
 ```sql
 SQL> SHOW PARAMETER AUDIT
@@ -8,7 +16,7 @@ SQL> SHOW PARAMETER AUDIT
 | Parameter     | Auditing Status    | Description                                                                                 |
 | :------------ | :----------------: | :------------------------------------------------------------------------------------------ |
 | NONE          | :x:                | Auditing is disabled.                                                                       |
-| DB            | :heavy_check_mark: | Write the standard audit content to SYS.AUD$ table                                          |
+| DB            | :heavy_check_mark: | Write the standard audit content to SYS.AUD$ table.                                         |
 | DB, EXTENDED  | :heavy_check_mark: | Similar to DB, but the SQL_BIND and SQL_TEXT columns are also populated for SYS.AUD$ table. |
 | XML           | :heavy_check_mark: | Write the standard audit content and FGA audit content to an XML formatted file.            |
 | XML, EXTENDED | :heavy_check_mark: | Similar to XML, but the SQL_BIND and SQL_TEXT columns are also populated in XML file.       |
@@ -66,4 +74,4 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;     
 
 
 
-## Oracle Database - 12c, 19c, 21c
+## Unified Oracle Database Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
