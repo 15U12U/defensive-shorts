@@ -74,17 +74,26 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 
 ### Levels of Auditing
 
-| Level     | Description | Example |
-| :-------- | :---------- | :--------- |
+| Level     | Description                                                                                        | Example                          |
+| :-------- | :------------------------------------------------------------------------------------------------- | :------------------------------- |
 | Statement | Audit specific SQL statements, such as ```SELECT```, ```INSERT```, ```UPDATE```, and ```DELETE```. | ```AUDIT SELECT;```              |
 | Object    | Audit actions on specific schema objects, such as tables, views, and procedures.                   | ```AUDIT SELECT ON employees;``` |
 | Privilege | Audit the use of system privileges and object privileges.                                          | ```AUDIT DROP ANY TABLE;```      |
 
+#### SQL Statement Types
+
+| Statement Type                     | Description                                                                         | Example                               |
+| :--------------------------------- | :---------------------------------------------------------------------------------- | :------------------------------------ |
+| DDL (Data Definition Language)     | Define the structure of a database and objects, such as tables, views, and indexes. | CREATE, ALTER, DROP, TRUNCATE, RENAME |
+| DML (Data Manipulation Language)   | Manipulate data stored in a database.                                               | SELECT, INSERT, UPDATE, DELETE, MERGE |
+| DCL (Data Control Language)        | Control access to data stored in a database.                                        | GRANT, REVOKE                         |
+| TCL (Transaction Control Language) | Manage transactions in a database.                                                  | COMMIT, ROLLBACK, SAVEPOINT           |
+
 #### Security-relevant SQL Statements and Privileges audited by Default
-| Level         | Audit                                                                                             |
-| :------------ | :------------------------------------------------------------------------------------------------ |
-| Privilege     | ALTER ANY PROCEDURE <br/> ALTER ANY TABLE <br/> ALTER DATABASE <br/> ALTER PROFILE <br/> ALTER SYSTEM <br/> ALTER USER <br/> AUDIT SYSTEM <br/> CREATE ANY JOB <br/> CREATE ANY LIBRARY <br/> CREATE ANY PROCEDURE <br/> CREATE ANY TABLE <br/> CREATE EXTERNAL JOB <br/> CREATE PUBLIC DATABASE LINK <br/> CREATE SESSION <br/> CREATE USER <br/> DROP ANY PROCEDURE <br/> DROP ANY TABLE <br/> DROP PROFILE <br/> DROP USER <br/> EXEMPT ACCESS POLICY <br/> GRANT ANY OBJECT PRIVILEGE <br/> GRANT ANY PRIVILEGE <br/> GRANT ANY ROLE |
-| Statement     | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT |
+| Level         | Audit                                                                                                                                               |
+| :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Privilege     | ALTER ANY PROCEDURE <br/> ALTER ANY TABLE <br/> ALTER DATABASE <br/> ALTER PROFILE <br/> ALTER SYSTEM <br/> ALTER USER <br/> AUDIT SYSTEM <br/> CREATE ANY JOB <br/> CREATE ANY LIBRARY <br/> CREATE ANY PROCEDURE <br/> CREATE ANY TABLE <br/> CREATE EXTERNAL JOB <br/> CREATE PUBLIC DATABASE LINK <br/> CREATE SESSION <br/> CREATE USER <br/> DROP ANY PROCEDURE <br/> DROP ANY TABLE <br/> DROP PROFILE <br/> DROP USER <br/> EXEMPT ACCESS POLICY <br/> GRANT ANY OBJECT PRIVILEGE <br/> GRANT ANY PRIVILEGE <br/> GRANT ANY ROLE                                                                                                                        |
+| Statement     | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT                                                   |
 
 ### 'AUDIT' Options
 
@@ -189,6 +198,10 @@ SQL> AUDIT SELECT ON hr.employees BY ACCESS WHENEVER SUCCESSFUL;       --Example
 SQL> AUDIT NETWORK;
 
 SQL> AUDIT DIRECT_PATH LOAD;
+
+# Disable Auditing
+SQL> NOAUDIT <OPERATION>;
+SQL> NOAUDIT NETWORK;                                                  --Example
 ```
 
 
