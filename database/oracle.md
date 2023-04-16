@@ -7,7 +7,7 @@
 | 2013 | Oracle 12cR1 | Introduced Unified auditing.      |
 | 2021 | Oracle 21c   | Traditional auditing deprecated.  |
 
-## Traditional Oracle Database Auditing - 12.1 or lower (ex: 9i, 10g, 11g)
+## Traditional Auditing - 12.1 or lower (ex: 9i, 10g, 11g)
 ### Check the status of auditing
 ```sql
 SQL> SHOW PARAMETER AUDIT
@@ -73,16 +73,22 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/opt/app/oracle/admin/db11/adump' SCOPE=S
 SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;             -- Configuring Audit File Location
 ```
 
+### Levels of Auditing
+
+| Level     | Description | Example |
+| :-------- | :---------- | :--------- |
+| Statement | Audit specific SQL statements, such as ```SELECT```, ```INSERT```, ```UPDATE```, and ```DELETE```. | ```AUDIT SELECT;```              |
+| Object    | Audit actions on specific schema objects, such as tables, views, and procedures.                   | ```AUDIT SELECT ON employees;``` |
+| Privilege | Audit the use of system privileges and object privileges.                                          | ```AUDIT DROP ANY TABLE;```      |
+
 # Security-relevant SQL Statements and Privileges audited by Default
-| Type          | Audit                                                                                             |
+| Level         | Audit                                                                                             |
 | :------------ | :------------------------------------------------------------------------------------------------ |
 | Privilege     | ALTER ANY PROCEDURE <br/> ALTER ANY TABLE <br/> ALTER DATABASE <br/> ALTER PROFILE <br/> ALTER SYSTEM <br/> ALTER USER <br/> AUDIT SYSTEM <br/> CREATE ANY JOB <br/> CREATE ANY LIBRARY <br/> CREATE ANY PROCEDURE <br/> CREATE ANY TABLE <br/> CREATE EXTERNAL JOB <br/> CREATE PUBLIC DATABASE LINK <br/> CREATE SESSION <br/> CREATE USER <br/> DROP ANY PROCEDURE <br/> DROP ANY TABLE <br/> DROP PROFILE <br/> DROP USER <br/> EXEMPT ACCESS POLICY <br/> GRANT ANY OBJECT PRIVILEGE <br/> GRANT ANY PRIVILEGE <br/> GRANT ANY ROLE |
-| SQL Statement | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT |
-
-
-### Audit Levels
+| Statement     | ROLE <br/> SYSTEM AUDIT <br/> PUBLIC SYNONYM <br/> DATABASE LINK <br/> PROFILE <br/> SYSTEM GRANT |
 
 
 
 
-## Unified Oracle Database Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
+
+## Unified Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
