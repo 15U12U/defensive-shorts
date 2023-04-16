@@ -1,4 +1,4 @@
-# Configuring Database Auditing
+# Database Auditing Configuration Guide
 ## Oracle Database
 ### Check the status of audting
 ```sql
