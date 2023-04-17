@@ -188,25 +188,30 @@ SQL> AUDIT ALL STATEMENTS;
 SQL> AUDIT ALL PRIVILEGES;
 
 SQL> AUDIT <OPERATION> IN SESSION CURRENT;
-SQL> AUDIT SELECT IN SESSION CURRENT;                                  --Example
+SQL> AUDIT SELECT IN SESSION CURRENT;                                                 --Example
 
 SQL> AUDIT <OPERATION> ON DEFAULT;
-SQL> AUDIT ALTER, GRANT, INSERT, UPDATE, DELETE ON DEFAULT;            --Example
+SQL> AUDIT ALTER, GRANT, INSERT, UPDATE, DELETE ON DEFAULT;                           --Example
 
 SQL> AUDIT <OPERATION> BY SESSION;
 SQL> AUDIT <OPERATION> BY ACCESS;
-SQL> AUDIT DELETE BY SESSION;                                          --Example
-SQL> AUDIT UPDATE BY ACCESS;                                           --Example
+SQL> AUDIT DELETE BY SESSION;                                                         --Example
+SQL> AUDIT UPDATE BY ACCESS;                                                          --Example
+SQL> AUDIT ALL BY scott BY ACCESS;                                                    --Example (Audit all user's activity)
+SQL> AUDIT SELECT TABLE BY scott BY ACCESS;                                           --Example (Audit all user's viewing activity)
+SQL> AUDIT SELECT TABLE, INSERT TABLE, UPDATE TABLE, DELETE TABLE BY scott BY ACCESS; --Example (Audit particular user's DML statements)
+SQL> AUDIT UPDATE TABLE, DELETE TABLE, INSERT TABLE BY scott BY ACCESS;               --Example (Audit all user's data change activity)
+SQL> AUDIT EXECUTE PROCEDURE BY scott BY ACCESS;                                      --Example
 
 SQL> AUDIT <OPERATION> WHENEVER SUCCESSFUL;
 SQL> AUDIT <OPERATION> WHENEVER NOT SUCCESSFUL;
-SQL> AUDIT ROLE WHENEVER SUCCESSFUL;                                   --Example
-SQL> AUDIT ROLE WHENEVER NOT SUCCESSFUL;                               --Example
+SQL> AUDIT ROLE WHENEVER SUCCESSFUL;                                                  --Example
+SQL> AUDIT ROLE WHENEVER NOT SUCCESSFUL;                                              --Example
 
 SQL> AUDIT <OPERATION> BY SESSION WHENEVER SUCCESSFUL;
 SQL> AUDIT <OPERATION> BY ACCESS WHENEVER NOT SUCCESSFUL;
-SQL> AUDIT SELECT ON hr.employees BY SESSION WHENEVER NOT SUCCESSFUL;  --Example
-SQL> AUDIT SELECT ON hr.employees BY ACCESS WHENEVER SUCCESSFUL;       --Example
+SQL> AUDIT SELECT ON hr.employees BY SESSION WHENEVER NOT SUCCESSFUL;                 --Example
+SQL> AUDIT SELECT ON hr.employees BY ACCESS WHENEVER SUCCESSFUL;                      --Example
 
 SQL> AUDIT NETWORK;
 
@@ -214,7 +219,22 @@ SQL> AUDIT DIRECT_PATH LOAD;
 
 # Disable Auditing
 SQL> NOAUDIT <OPERATION>;
-SQL> NOAUDIT NETWORK;                                                  --Example
+SQL> NOAUDIT NETWORK;                                                                 --Example
+SQL> NOAUDIT;                                                                         --Example
+SQL> NOAUDIT SESSION;                                                                 --Example
+SQL> NOAUDIT SESSION BY scott, hr;                                                    --Example
+SQL> NOAUDIT DELETE ON emp;                                                           --Example
+SQL> NOAUDIT SELECT TABLE, INSERT TABLE, DELETE TABLE, EXECUTE PROCEDURE;             --Example
+SQL> NOAUDIT ALL;                                                                     --Example
+SQL> NOAUDIT ALL PRIVILEGES;                                                          --Example
+SQL> NOAUDIT ALL ON DEFAULT;                                                          --Example
+SQL> NOAUDIT SESSION BY APPOWNER;                                                     --Example
+SQL> NOAUDIT CREATE SESSION BY APPOWNER;                                              --Example
+SQL> NOAUDIT SELECT TABLE BY APPOWNER;                                                --Example
+SQL> NOAUDIT INSERT TABLE BY APPOWNER;                                                --Example
+SQL> NOAUDIT EXECUTE PROCEDURE BY APPOWNER;                                           --Example
+SQL> NOAUDIT DELETE TABLE BY APPOWNER;                                                --Example
+SQL> NOAUDIT DELETE ANY TABLE BY APPOWNER;                                            --Example
 ```
 
 ### Oracle FGA - Fine Grained Auditing (DBMS_FGA)
