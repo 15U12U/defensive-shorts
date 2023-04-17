@@ -111,7 +111,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | NETWORK                 | Audit internal failures in the network layer.                                                                                             |
 | DIRECT_PATH LOAD        | Audit **SQL\*Loader** direct path loads.                                                                                                  |
 
-#### Audit Statement Options
+#### SQL Statement Shortcuts for Auditing
 
 | Shortcut             | SQL Statements and Operations Audited                                                                                                        |
 | :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -144,7 +144,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | USER                 | ```CREATE USER``` <br> ```ALTER USER``` <br> ```DROP USER``` <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                            |
 | VIEW                 | ```CREATE VIEW``` <br> ```DROP VIEW```                                                                                                       |
 
-#### Additional Audit Statement Options
+#### Additional SQL Statement Shortcuts for Auditing
 
 | Shortcut          | SQL Statements and Operations Audited                                                                                                      |
 | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -167,6 +167,19 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | UPDATE TABLE      | ```UPDATE _table, view_```                                                                                                                 |
 | WRITE DIRECTORY   | _Write operations on a directory_                                                                                                          |
 
+#### Schema Object Auditing Options
+
+| Object                       | SQL Operations                                                                                                                       |
+| :--------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| Table                        | `ALTER` <br> `AUDIT` <br> `COMMENT` <br> `DELETE` <br> `FLASHBACK` <br> `GRANT` <br> `INDEX` <br> `INSERT` <br> `LOCK` <br> `RENAME` <br> `SELECT` <br> `UPDATE` |
+| View                         | `AUDIT` <br> `COMMENT` <br> `DELETE` <br> `FLASHBACK` <br> `GRANT` <br> `INSERT` <br> `LOCK` <br> `RENAME` <br> `SELECT` <br> `UPDATE` |
+| Sequence                     | `ALTER` <br> `AUDIT` <br> `GRANT` <br> `SELECT`                                                                                      |
+| Procedure, Function, Package | `AUDIT` <br> `EXECUTE` <br> `GRANT`                                                                                                  |
+| Materialized View            | `ALTER` <br> `AUDIT` <br> `COMMENT` <br> `DELETE` <br> `INDEX` <br> `INSERT` <br> `LOCK` <br> `SELECT` <br> `UPDATE`                 |
+| Mining Model                 | `AUDIT` <br> `COMMENT` <br> `GRANT` <br> `RENAME` <br> `SELECT`                                                                      |
+| Directory                    | `AUDIT` <br> `GRANT` <br> `READ`                                                                                                     |
+| Library                      | `EXECUTE` <br> `GRANT`                                                                                                               |
+| Object Type                  | `ALTER` <br> `AUDIT` <br> `GRANT`                                                                                                    |
 
 #### Examples
 ```sql
