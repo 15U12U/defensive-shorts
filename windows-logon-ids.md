@@ -1,11 +1,14 @@
-|  #  | Logon Type | Authenticators |
-| :-: | :--------- | :-----------|
-|  2  | Interactive | Password, SmartCard |
-|  3  | Network | Password, Kerberos ticket, NT Hash |
-|  4  | Batch | Password (usually stored as LSA secret) |
-|  2  | Interactive | Password, SmartCard |
-|  2  | Interactive | Password, SmartCard |
-|  2  | Interactive | Password, SmartCard |
+|  #  | Logon Type        | Authenticators                          |
+| :-: | :---------------- | :-------------------------------------- |
+|  2  | Interactive       | Password, SmartCard                     |
+|  3  | Network           | Password, Kerberos ticket, NT Hash      |
+|  4  | Batch             | Password (usually stored as LSA secret) |
+|  5  | Service           | Password (usually stored as LSA secret) |
+|  7  | Unlock            | Password                                |
+|  8  | NetworkCleartext  | Password                                |
+|  9  | NewCredentials    | Password                                |
+| 10  | RemoteInteractive | Password                                |
+---
 
 ### Logon Type 2 - Interactive
 This is just logging on a local computer, typing user name and password. User logs on with a local or a domain account. This logon tvpe will appear only when a user really authenticated in the domain (by a domain controller). In case the DC is not available, but the user provided valid domain credentials cached in the local PC, Windows will log an event with logon type = 11 (Cached Interactive).
