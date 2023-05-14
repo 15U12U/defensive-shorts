@@ -8,6 +8,8 @@
 |  8  | NetworkCleartext  | Password                                |
 |  9  | NewCredentials    | Password                                |
 | 10  | RemoteInteractive | Password                                |
+| 11  | CachedInteractive | Password                                |
+
 ---
 
 ### Logon Type 2 - Interactive
