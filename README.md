@@ -11,3 +11,4 @@
 - [SSL/TLS Certificate Guide](certificates.md)
 - [Generic Log File Locations](logs/README.md)
 - [Database Auditing Configuration Guide](database/README.md)
+- [Email Security Configuration Guide](email-security.md)
