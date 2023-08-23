@@ -1,6 +1,6 @@
 # Email Security Configuration Guide
 ## 1. SPF
-### View SPF Record
+### 1.1. SPF Record Lookup
 ```
 nslookup -type=TXT example.com
 nslookup -q=TXT example.com
@@ -17,7 +17,25 @@ google.com      text = "v=spf1 include:_spf.google.com ~all"
 $ dig TXT google.com
 google.com.             0       IN      TXT     "v=spf1 include:_spf.google.com ~all"
 ```
+
+### 1.2. SPF Record Breakdown
+
+| Parameter | Description                                                                                                                               |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| v=spf1    | SPF version. (No other version is currently in use.)                                                                                      |
+| all       | Always match                                                                                                                              |
+| a         | Authorizes the host detected in the A or AAAA record of the domain to send the emails.                                                    |
+| mx        | An MX record of the queried (or explicitly specified) domain contains the IP address of the sender.                                       |
+| ptr       | The hostname(s) for the client IP is looked up using PTR queries. (Avoid   if possible)                                                   |
+| ip4       | Authorized IPv4 address/subnet to send emails. If no prefix-length is given, /32 is assumed.                                              |
+| ip6       | Authorized IPv6 address/subnet to send emails. If no prefix-length is given, /128 is assumed.                                             |
+| include   | Defines other authorized domains.                                                                                                         |
+| exists    | IP address of the sender based on the connection of the client or other criteria.                                                         |
+| redirect  | IP address of the sender is legitimized by the SPF record of another domain. If there is an `all` mechanism anywhere in the record, the `redirect` is completely ignored. An SPF record with a `redirect` should not contain the `all` mechanism. |
+| exp       | Used to provide an explanation when a FAIL quantifier is included on a matched mechanism. This explanation will be placed in the SPF log. |
+
 ---
+
 
 
 ## 2. DKIM
