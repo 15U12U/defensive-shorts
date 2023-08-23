@@ -89,33 +89,68 @@ arcselector9901._domainkey.microsoft.com. 0 IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBg
 
 ### 2.2. DKIM-Signature Email Header Breakdown
 
-| Parameter | Description                                                                                  |
-| :-------- | :------------------------------------------------------------------------------------------- |
-| v=1      	| The version of the DKIM specification. (No other version is currently in use.)               |
-| a=       	| The algorithm that was used to create the signature.                                       	 |
-| c=       	| The canonicalization algorithms that were used for the header and the body.                  |
-| d=      	| The domain claiming responsibility for transmitting the message.                             |
-| s=      	| The selector for the domain.                                                                 |
-| bh=     	| *Body hash*: The hash of the body of the message after it was canonicalized, in Base64 form. |
-| h=      	| The list of header fields used to create the DKIM signature.                                 |
-| b=      	| The DKIM signature data, in Base64 form.                                                     |
-| t=      	| The time of the message, in Epoch time.                                                      |
-| x=      	| The DKIM signature expiration time. (MUST BE: x > t)                                         |
+| Parameter | Description                                                                                    |
+| :-------- | :--------------------------------------------------------------------------------------------- |
+| v=1      	| The version of the DKIM specification. (No other version is currently in use.)                 |
+| a=       	| The algorithm that was used to create the signature.                                         	 |
+| c=       	| The canonicalization algorithms that were used for the header and the body.                    |
+| d=      	| The domain claiming responsibility for transmitting the message.                               |
+| s=      	| The selector for the domain.                                                                   |
+| bh=     	| **Body hash**: The hash of the body of the message after it was canonicalized, in Base64 form. |
+| h=      	| The list of header fields used to create the DKIM signature.                                   |
+| b=      	| The DKIM signature data, in Base64 form.                                                       |
+| t=      	| The time of the message, in Epoch time.                                                        |
+| x=      	| The DKIM signature expiration time. (MUST BE: x > t)                                           |
 
-#### Canonicalization
+#### Canonicalization Algorithms
+
 | Header  | Body    |
 | :-----: | :-----: |
 | relaxed | relaxed |
-| relaxed	| strict  |
-| strict  | relaxed |
-| strict  | strict  |
+| relaxed	| simple  |
+| simple  | relaxed |
+| simple  | simple  |
 
 ```
-"c=strict" = "c=strict/strict"
-"c=relaxed" = "c=relaxed/strict"
+"c=simple/simple"
+"c=relaxed/simple"
 ```
 
-### 2.3. DKIM Verification Mechanism
+##### Header Algorithms
+| Algorithm | Description                                                                                                                                 |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| simple   	| Does not change header fields. In particular, header field names MUST NOT be case-folded and whitespace MUST NOT be changed.                |
+| relaxed  	| Convert all header field names (not the header field values) to lowercase. Convert all sequences of one or more WSP characters to a single SP character. Delete all WSP characters at the end of each unfolded header field value. Delete any WSP characters remaining before and after the colon separating the header field name from the header field value. |
+
+##### Body Algorithms
+| Algorithm | Description                                                                                                                                                           |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| simple   	| Ignores all empty lines at the end of the message body.                                                                                                               |
+| relaxed  	| Ignore all whitespace at the end of lines. Reduce all sequences of WSP within a line to a single SP character. Ignore all empty lines at the end of the message body. |
+
+#### Example
+```
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025; h=mime-version:from:date:message-id:subject:to; bh=NuUVBkHAblnFrMSNaWdGtwpjr9poc3wM2sXMhd25sPE=; b=gGpvUwVrIr1IBFW1gZyFDYqvIO63kM27v1T90W5YWsPeXuFHZVuKuaFBO28GkBQJsgogqFsLfIicvDiEs5hPQfuI3SiZmXgizbnNB85ikrNh8oekceHCzcE7Rp4fe9EBiyMOmkVjG1b4q7h7HCqBWOh9zHIpkoT2n6JSK0VpH2nJulKy8YrnAyZAm8on5XAWWVB83OvvU7w4f2UMWPeXZeNNdgk67KmmO9VT3NfwMX8WEhajxcu1ETLPIrsgxROz2GaoNJ4gqDOi/OeZtiT+sTWDxpjkrIcTOygR3Lcgb8D8CELqZOvEr0M9ySimQsobTicF1wOERP2NvaigFPrjVA==
+```
+
+### 2.3. DKIM DNS Text Record Breakdown
+
+| Parameter | Description                                                                                            |
+| :-------- | :----------------------------------------------------------------------------------------------------- |
+| v=DKIM1   | The version of the DKIM specification. (No other version is currently in use.)                         |
+| h=       	| Acceptable hash algorithms. (OPTIONAL, defaults to allowing all algorithms).                           |
+| k=       	| Key type. (OPTIONAL, default is "rsa")                                                                 |
+| n=      	| Notes that might be of interest to a human.                                                            |
+| p=      	| Public-key data (base64; REQUIRED).  An empty value means that the public key has been revoked.        |
+| s=     	  | Service Type (OPTIONAL; default is "*").                                                               |
+| t=      	| Flags, represented as a colon-separated list of names (OPTIONAL, default is no flags set).             |
+
+#### Example
+```
+v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAohCECx8ACVIj42taMc8G2ljiDmsboUW4mgasOg3/2Ay1D37DwK0CE1aok6x0x6dQ4FC/NGdeksPjT/ZLYH+zwwUvElJwd8adtZK4E7AT9Rzr6WPtTiFHi87em6n12HTvp8plpGHXnm8vdFrTxcCUguwUBzbe6MB12Dc3vSURcOUqfa6Dlj/6cNehl+PMonql"
+```
+
+### 2.4. DKIM Verification Mechanism
 ![DKIM](img/DKIM.png)  
 Reference: [How do DKIM and DKIM records work?](https://postmarkapp.com/guides/dkim/how-does-dkim-work)
 
@@ -145,19 +180,19 @@ _dmarc.facebook.com.    0       IN      TXT     "v=DMARC1; p=reject; rua=mailto:
 
 ### 3.2. DMARC DNS Text Record Breakdown
 
-| Parameter | Description                                                                                                                               |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| v=spf1    | SPF version. (No other version is currently in use.)                                                                                      |
-| all       | Always match                                                                                                                              |
-| a         | Authorizes the host detected in the A or AAAA record of the domain to send the emails.                                                    |
-| mx        | An MX record of the queried (or explicitly specified) domain contains the IP address of the sender.                                       |
-| ptr       | The hostname(s) for the client IP is looked up using PTR queries. (Avoid   if possible)                                                   |
-| ip4       | Authorized IPv4 address/subnet to send emails. If no prefix-length is given, /32 is assumed.                                              |
-| ip6       | Authorized IPv6 address/subnet to send emails. If no prefix-length is given, /128 is assumed.                                             |
-| include   | Defines other authorized domains.                                                                                                         |
-| exists    | IP address of the sender based on the connection of the client or other criteria.                                                         |
-| redirect  | IP address of the sender is legitimized by the SPF record of another domain. If there is an `all` mechanism anywhere in the record, the `redirect` is completely ignored. An SPF record with a `redirect` should not contain the `all` mechanism. |
-| exp       | Used to provide an explanation when a FAIL quantifier is included on a matched mechanism. This explanation will be placed in the SPF log. |
+| Parameter | Description                                                                                                               |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------ |
+| v=DMARC1  | **Version**: The version of the DMARC specification. (No other version is currently in use.)                              |
+| p=        | **Policy**: The policy that should be followed for the domain. The possible values are none, quarantine or reject.        |
+| sp=       | **Subdomain policy**: This specifies the policy that should be followed for subdomains.                                   |
+| pct=      | **Percentage**: The percentage of emails that should be subjected to filtering.                                           |
+| ruf=      | **Forensic report email address**: The email address that forensic reports should be sent to.                             |
+| rua=      | **Aggregate report email address**: The email address that aggregate reports should be sent to.                           |
+| aspf=     | SPF domain alignment mode. Possible values: `r` (relaxed) or `s` (strict). `Not related to DKIM Canonicalization modes.`  |
+| adkim=    | DKIM domain alignment mode. Possible values: `r` (relaxed) or `s` (strict). `Not related to DKIM Canonicalization modes.`	|
+| fo=       | **Forensic reporting options**: Defines how forensic reports are created and sent to users. Possible values: `0, 1, d, s` |
+| rf=       | **Report format**: The forensic reporting format.                                                                         |
+| ri=       | **Report interval**: The frequency of the reports.                                                                        |
 
 ### 3.3. DMARC Verification Mechanism
 ![DMARC](img/DMARC.png)  
