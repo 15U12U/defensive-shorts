@@ -50,6 +50,17 @@ google.com.             0       IN      TXT     "v=spf1 include:_spf.google.com 
 | redirect  | IP address of the sender is legitimized by the SPF record of another domain. If there is an `all` mechanism anywhere in the record, the `redirect` is completely ignored. An SPF record with a `redirect` should not contain the `all` mechanism. |
 | exp       | Used to provide an explanation when a FAIL quantifier is included on a matched mechanism. This explanation will be placed in the SPF log. |
 
+#### Results of Evaluation
+| Value     | Description                                                                              | Action           |
+| :-------- | :--------------------------------------------------------------------------------------- | :--------------- |
+| Pass      | The SPF record designates the host to be allowed to send                                 | accept           |
+| Fail      | The SPF record has designated the host as NOT being allowed to send                      | reject           |
+| SoftFail  | The SPF record has designated the host as NOT being allowed to send but is in transition | accept but mark  |
+| Neutral   | The SPF record specifies explicitly that nothing can be said about validity              | accept           |
+| None      | The domain does not have an SPF record or the SPF record does not evaluate to a result   | accept           |
+| PermError | A permanent error has occurred (ex: badly formatted SPF record)                          | unspecified      |
+| TempError | A transient error has occurred                                                           | accept or reject |
+
 ### 1.3. SPF Verification Mechanism
 ![SPF](img/SPF.png)  
 Reference: [SPF record: Protect your domain reputation and email delivery](https://postmarkapp.com/guides/spf)
