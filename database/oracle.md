@@ -1,5 +1,5 @@
 # Oracle Database Audit Configuration Guide
-## Auditing Milestones
+## 1. Auditing Milestones
 | Year | Version      | Milestone                         |
 | :--- | :----------- | :-------------------------------- |
 | 1992 | Oracle 7     | Introduced Traditional auditing.  |
@@ -7,13 +7,13 @@
 | 2013 | Oracle 12cR1 | Introduced Unified auditing.      |
 | 2021 | Oracle 21c   | Traditional auditing deprecated.  |
 
-## Traditional Auditing - 12.1 or lower (ex: 9i, 10g, 11g)
-### Check the status of auditing
+## 2. Traditional Auditing - 12.1 or lower (ex: 9i, 10g, 11g)
+### 2.1. Check the status of auditing
 ```sql
 SQL> SHOW PARAMETER AUDIT
 ```
-### Basic Audit Configuration Options
-#### AUDIT_TRAIL
+### 2.2. Basic Audit Configuration Options
+#### 2.2.1. AUDIT_TRAIL
 | Parameter     | Auditing Status    | Description                                                                                               |
 | :------------ | :----------------: | :-------------------------------------------------------------------------------------------------------- |
 | NONE          | :x:                | Auditing is disabled.                                                                                     |
@@ -23,13 +23,13 @@ SQL> SHOW PARAMETER AUDIT
 | XML, EXTENDED | :heavy_check_mark: | Similar to **XML**, but the _SQL_BIND_ and _SQL_TEXT_ columns are also populated in XML file.             |
 | OS            | :heavy_check_mark: | Write the standard audit content to text files.                                                           |
 
-#### AUDIT_SYS_OPERATIONS
+#### 2.2.2. AUDIT_SYS_OPERATIONS
 | Parameter    | Auditing Status    | Description                                                                                 |
 | :----------- | :----------------: | :------------------------------------------------------------------------------------------ |
 | FALSE        | :x:                | Auditing is disabled.                                                                       |
 | TRUE         | :heavy_check_mark: | Enables auditing of SQL statements directly issued by users with **SYS** authorization such as **SYSASM**, **SYSBACKUP**, **SYSDBA**, **SYSDG**, **SYSKM**, or **SYSOPER** privileges, as well as SQL statements that have been executed with **SYS** authorization using the _**PL/SQL**_ package _DBMS_SYS_SQL_. |
 
-#### AUDIT_SYSLOG_LEVEL
+#### 2.2.3. AUDIT_SYSLOG_LEVEL
 > **Note**  
 > 
 > _AUDIT_SYSLOG_LEVEL allows SYS and standard OS audit records to be written to the system audit log using the SYSLOG utility._
@@ -39,7 +39,7 @@ SQL> SHOW PARAMETER AUDIT
 | facility  | `USER` <br> `LOCAL0` \| `LOCAL1` \| `LOCAL2` \| `LOCAL3` \| `LOCAL4` \| `LOCAL5` \| `LOCAL6` \| `LOCAL7` <br> `SYSLOG` <br> `DAEMON` <br> `KERN` <br> `MAIL` <br> `AUTH` <br> `LPR` <br> `NEWS` <br> `UUCP` <br> `CRON` |
 | priority  | `NOTICE` <br> `INFO` <br> `DEBUG` <br> `WARNING` <br> `ERR` <br> `CRIT` <br> `ALERT` <br> `EMERG` |
 
-#### AUDIT_FILE_DEST
+#### 2.2.4. AUDIT_FILE_DEST
 > **Note**  
 > 
 > _AUDIT_FILE_DEST specifies the operating system directory into which the audit trail is written when the AUDIT_TRAIL initialization parameter is set to **OS**, **XML**, or **XML, EXTENDED**._
@@ -49,7 +49,7 @@ SQL> SHOW PARAMETER AUDIT
 | _ORACLE_BASE_/admin/_ORACLE_SID_/adump  |
 | _ORACLE_HOME_/rdbms/audit               |
 
-#### Examples
+#### 2.2.5. Examples
 ```sql
 # 'AUDIT_TRAIL' Configuration
 SQL> ALTER SYSTEM SET AUDIT_TRAIL=DB SCOPE=SPFILE;
@@ -72,7 +72,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/opt/app/oracle/admin/db11/adump' SCOPE=S
 SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 ```
 
-### Levels of Auditing
+### 2.3. Levels of Auditing
 
 | Level     | Description                                                                                        | Example                          |
 | :-------- | :------------------------------------------------------------------------------------------------- | :------------------------------- |
@@ -80,7 +80,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | Object    | Audit actions on specific schema objects, such as tables, views, and procedures.                   | ```AUDIT SELECT ON employees;``` |
 | Privilege | Audit the use of system privileges and object privileges.                                          | ```AUDIT DROP ANY TABLE;```      |
 
-#### SQL Statement Types
+#### 2.3.1. SQL Statement Types
 
 | Statement Type                     | Description                                                                         | Example                               |
 | :--------------------------------- | :---------------------------------------------------------------------------------- | :------------------------------------ |
@@ -89,13 +89,13 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | DCL (Data Control Language)        | Control access to data stored in a database.                                        | ```GRANT```, ```REVOKE```                                              |
 | TCL (Transaction Control Language) | Manage transactions in a database.                                                  | ```COMMIT```, ```ROLLBACK```, ```SAVEPOINT```              |
 
-#### Security-relevant SQL Statements and Privileges audited by Default
+#### 2.3.2. Security-relevant SQL Statements and Privileges audited by Default
 | Level         | Audit                                                                                                                                               |
 | :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Privilege     | ```ALTER ANY PROCEDURE``` <br/> ```ALTER ANY TABLE``` <br/> ```ALTER DATABASE``` <br/> ```ALTER PROFILE``` <br/> ```ALTER SYSTEM``` <br/> ```ALTER USER``` <br/> ```AUDIT SYSTEM``` <br/> ```CREATE ANY JOB``` <br/> ```CREATE ANY LIBRARY``` <br/> ```CREATE ANY PROCEDURE``` <br/> ```CREATE ANY TABLE``` <br/> ```CREATE EXTERNAL JOB``` <br/> ```CREATE PUBLIC DATABASE LINK``` <br/> ```CREATE SESSION``` <br/> ```CREATE USER``` <br/> ```DROP ANY PROCEDURE``` <br/> ```DROP ANY TABLE``` <br/> ```DROP PROFILE``` <br/> ```DROP USER``` <br/> ```EXEMPT ACCESS POLICY``` <br/> ```GRANT ANY OBJECT PRIVILEGE``` <br/> ```GRANT ANY PRIVILEGE``` <br/> ```GRANT ANY ROLE```                                                                                                                                                  |
 | Statement     | ```ROLE``` <br/> ```SYSTEM AUDIT``` <br/> ```PUBLIC SYNONYM``` <br/> ```DATABASE LINK``` <br/> ```PROFILE``` <br/> ```SYSTEM GRANT```               |
 
-### 'AUDIT' Options
+### 2.4. 'AUDIT' Options
 
 | Option                  | Description                                                                                                                               |
 | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -111,7 +111,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | NETWORK                 | Audit internal failures in the network layer.                                                                                             |
 | DIRECT_PATH LOAD        | Audit **SQL\*Loader** direct path loads.                                                                                                  |
 
-#### SQL Statement Shortcuts for Auditing
+#### 2.4.1. SQL Statement Shortcuts for Auditing
 
 | Shortcut             | SQL Statements and Operations Audited                                                                                                        |
 | :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -144,7 +144,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | USER                 | ```CREATE USER``` <br> ```ALTER USER``` <br> ```DROP USER``` <br> Notes: <br> - ```AUDIT USER``` audits these three SQL statements. Use ```AUDIT ALTER USER``` to audit statements that require the ```ALTER USER``` system privilege. <br> - An ```AUDIT ALTER USER``` statement does not audit a user changing his or her own password, as this activity does not require the ```ALTER USER``` system privilege.                                                            |
 | VIEW                 | ```CREATE VIEW``` <br> ```DROP VIEW```                                                                                                       |
 
-#### Additional SQL Statement Shortcuts for Auditing
+#### 2.4.2. Additional SQL Statement Shortcuts for Auditing
 
 | Shortcut          | SQL Statements and Operations Audited                                                                                                      |
 | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -167,7 +167,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | UPDATE TABLE      | ```UPDATE _table, view_```                                                                                                                 |
 | WRITE DIRECTORY   | _Write operations on a directory_                                                                                                          |
 
-#### Schema Object Auditing Options
+#### 2.4.3. Schema Object Auditing Options
 
 | Object                       | SQL Operations                                                                                                                       |
 | :--------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
@@ -181,7 +181,7 @@ SQL> ALTER SYSTEM SET AUDIT_FILE_DEST='/var/log/oracle/audit' SCOPE=SPFILE;
 | Library                      | `EXECUTE` <br> `GRANT`                                                                                                               |
 | Object Type                  | `ALTER` <br> `AUDIT` <br> `GRANT`                                                                                                    |
 
-#### Examples
+#### 2.4.4. Examples
 ```sql
 SQL> AUDIT ALL;
 SQL> AUDIT ALL STATEMENTS;
@@ -237,8 +237,8 @@ SQL> NOAUDIT DELETE TABLE BY APPOWNER;                                          
 SQL> NOAUDIT DELETE ANY TABLE BY APPOWNER;                                            --Example
 ```
 
-### Oracle FGA - Fine Grained Auditing (DBMS_FGA)
-#### DBMS_FGA Subprograms
+### 2.5. Oracle FGA - Fine Grained Auditing (DBMS_FGA)
+#### 2.5.1. DBMS_FGA Subprograms
 
 | Subprogram     | Description                                                                   |
 | :------------- | :---------------------------------------------------------------------------- |
@@ -248,7 +248,7 @@ SQL> NOAUDIT DELETE ANY TABLE BY APPOWNER;                                      
 | DISABLE_POLICY | Disables an audit policy.                                                     |
 
 
-##### Example
+##### 2.5.2. Example
 ```sql
 DBMS_FGA.ADD_POLICY (
    object_schema      =>  'scott',
@@ -264,14 +264,10 @@ DBMS_FGA.ADD_POLICY (
    policy_owner       =>  'sec_admin);
 
 
-
-
-
-
 ```
 
 
+---
 
 
-
-## Unified Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
+## 3. Unified Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
