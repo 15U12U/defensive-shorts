@@ -1,5 +1,5 @@
 # Email Security Configuration Guide
-## 1. SPF
+## 1. SPF [^1]
 ### 1.1. SPF Record Lookup
 ```
 nslookup -type=TXT example.com
@@ -68,7 +68,7 @@ Reference: [SPF record: Protect your domain reputation and email delivery](https
 ---
 
 
-## 2. DKIM
+## 2. DKIM [^2]
 ### 2.1. DKIM Record Lookup
 ```
 nslookup -type=TXT <selector>._domainkey.example.com
@@ -159,7 +159,7 @@ Reference: [How do DKIM and DKIM records work?](https://postmarkapp.com/guides/d
 ---
 
 
-## 3. DMARC
+## 3. DMARC [^3]
 ### 3.1. DMARC Record Lookup
 ```
 nslookup -type=TXT _dmarc.example.com
@@ -200,9 +200,10 @@ Reference: [DMARC: What is it and why do you need it?](https://postmarkapp.com/g
 
 
 
+[^1]: [RFC 7208: Sender Policy Framework (SPF)](https://www.rfc-editor.org/rfc/rfc7208)
+[^2]: [RFC 6376: DomainKeys Identified Mail (DKIM) Signatures](https://www.rfc-editor.org/rfc/rfc6376.html)
+[^3]: [RFC 7489: Domain-based Message Authentication, Reporting, and Conformance (DMARC)](https://www.rfc-editor.org/rfc/rfc7489)
 
-
----
 
 
 
