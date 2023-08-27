@@ -61,14 +61,13 @@ google.com.             0       IN      TXT     "v=spf1 include:_spf.google.com 
 | PermError | A permanent error has occurred (ex: badly formatted SPF record)                          | unspecified      |
 | TempError | A transient error has occurred                                                           | accept or reject |
 
-### 1.3. SPF Verification Mechanism
-![SPF](img/SPF.png)  
-Reference: [SPF record: Protect your domain reputation and email delivery](https://postmarkapp.com/guides/spf)
+### 1.3. SPF Verification Mechanism [^2]
+![SPF](img/SPF.png)
 
 ---
 
 
-## 2. DKIM [^2]
+## 2. DKIM [^3]
 ### 2.1. DKIM Record Lookup
 ```
 nslookup -type=TXT <selector>._domainkey.example.com
@@ -150,16 +149,15 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025; h
 v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAohCECx8ACVIj42taMc8G2ljiDmsboUW4mgasOg3/2Ay1D37DwK0CE1aok6x0x6dQ4FC/NGdeksPjT/ZLYH+zwwUvElJwd8adtZK4E7AT9Rzr6WPtTiFHi87em6n12HTvp8plpGHXnm8vdFrTxcCUguwUBzbe6MB12Dc3vSURcOUqfa6Dlj/6cNehl+PMonql"
 ```
 
-### 2.4. DKIM Verification Mechanism
-![DKIM](img/DKIM.png)  
-Reference: [How do DKIM and DKIM records work?](https://postmarkapp.com/guides/dkim/how-does-dkim-work)
+### 2.4. DKIM Verification Mechanism [^4]
+![DKIM](img/DKIM.png)
 
 
 
 ---
 
 
-## 3. DMARC [^3]
+## 3. DMARC [^5]
 ### 3.1. DMARC Record Lookup
 ```
 nslookup -type=TXT _dmarc.example.com
@@ -194,16 +192,17 @@ _dmarc.facebook.com.    0       IN      TXT     "v=DMARC1; p=reject; rua=mailto:
 | rf=       | **Report format**: The forensic reporting format.                                                                         |
 | ri=       | **Report interval**: The frequency of the reports.                                                                        |
 
-### 3.3. DMARC Verification Mechanism
-![DMARC](img/DMARC.png)  
-Reference: [DMARC: What is it and why do you need it?](https://postmarkapp.com/guides/dmarc)
+### 3.3. DMARC Verification Mechanism [^6]
+![DMARC](img/DMARC.png)
 
 
 
 [^1]: [RFC 7208: Sender Policy Framework (SPF)](https://www.rfc-editor.org/rfc/rfc7208)
-[^2]: [RFC 6376: DomainKeys Identified Mail (DKIM) Signatures](https://www.rfc-editor.org/rfc/rfc6376.html)
-[^3]: [RFC 7489: Domain-based Message Authentication, Reporting, and Conformance (DMARC)](https://www.rfc-editor.org/rfc/rfc7489)
-
+[^2]: [SPF record: Protect your domain reputation and email delivery](https://postmarkapp.com/guides/spf)
+[^3]: [RFC 6376: DomainKeys Identified Mail (DKIM) Signatures](https://www.rfc-editor.org/rfc/rfc6376.html)
+[^4]: [How do DKIM and DKIM records work?](https://postmarkapp.com/guides/dkim/how-does-dkim-work)
+[^5]: [RFC 7489: Domain-based Message Authentication, Reporting, and Conformance (DMARC)](https://www.rfc-editor.org/rfc/rfc7489)
+[^6]: [DMARC: What is it and why do you need it?](https://postmarkapp.com/guides/dmarc)
 
 
 
