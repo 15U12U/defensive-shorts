@@ -1,8 +1,8 @@
-# Windows DNS Analytical Logs
+# Windows DNS Analytical Logs Breakdown
 ## 1. Enable Windows DNS Analytical Logs
-
-
-
+![DNS-Analytical-1](img/DNS-Analytical-1.png)
+![DNS-Analytical-2](img/DNS-Analytical-2.png)
+![DNS-Analytical-3](img/DNS-Analytical-3.png)
 
 ## 2. Decode 'PavcketData' in Windows DNS Analytical Logs
 
