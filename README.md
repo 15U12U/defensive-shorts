@@ -12,3 +12,5 @@
 - [Generic Log File Locations](logs/README.md)
 - [Database Auditing Configuration Guide](database/README.md)
 - [Email Security Configuration Guide](email-security.md)
+- [Windows DNS Analytical Logs Breakdown](windows-dns-analytical-log.md)
+
