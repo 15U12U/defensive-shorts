@@ -4,7 +4,7 @@
 ![DNS-Analytical-2](img/DNS-Analytical-2.png)
 ![DNS-Analytical-3](img/DNS-Analytical-3.png)
 
-## 2. Decode 'PavcketData' in Windows DNS Analytical Logs
+## 2. Decode 'PacketData' in Windows DNS Analytical Logs
 
 ```python
 #!/usr/bin/env python3
