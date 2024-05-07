@@ -13,4 +13,4 @@
 - [Database Auditing Configuration Guide](database/README.md)
 - [Email Security Configuration Guide](email-security.md)
 - [Windows DNS Analytical Logs Breakdown](windows-dns-analytical-log.md)
-
+- [Linux System-wide Cryptographic Policy Configuration Guide](linux-cryptographic-policy.md)
