@@ -271,3 +271,19 @@ DBMS_FGA.ADD_POLICY (
 
 
 ## 3. Unified Auditing - 12.2 or higher (ex: 12c, 19c, 21c)
+### 3.1. Verify Unified Auditing is Enabled or not
+
+```sql
+SELECT VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';
+```
+
+#### Output
+```sql
+PARAMETER         VALUE
+----------------  ----------
+Unified Auditing  TRUE
+```
+
+> [!NOTE]
+> If the output is "TURE", that means pure Unified Auditing is enabled and traditional auditing is disabled. If pure unified auditing is not enabled, the output is "FALSE", implying that your database uses mixed-mode auditing. Mixed-mode auditing means that both traditional auditing and unified auditing are enabled.
+
