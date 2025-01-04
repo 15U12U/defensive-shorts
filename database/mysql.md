@@ -18,6 +18,7 @@ SHOW VARIABLES LIKE "general_log%";
 ```
 
 ### Enabling General Query Log
+#### Method 1: System Variable [^1]
 ```mysql
 SET GLOBAL log_output = 'FILE';                                         -- Available Options [ 'FILE' | 'TABLE' | 'NONE' ]
 SET GLOBAL general_log = 'ON';  /* or */ SET GLOBAL general_log = 1;    -- Available Options [ 'ON'/1 | 'OFF'/0 ]
@@ -35,6 +36,26 @@ SET GLOBAL general_log_file = '/tmp/mysql_general_query.log';       -- Linux
 SET GLOBAL general_log_file = 'C:/Temp/mariadb_general_query.log';    -- Windows
 SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 ```
+
+#### Method 2: Option File [^2]
+
+| Location             | Scope                                             |
+| :------------------- | :------------------------------------------------ |
+| /etc/my.cnf          | Global                                            |
+| /etc/mysql/my.cnf    | Global                                            |
+| $MARIADB_HOME/my.cnf | Server                                            |
+| $MYSQL_HOME/my.cnf   | Server                                            |
+| defaults-extra-file  | File specified with --defaults-extra-file, if any |
+| ~/.my.cnf            | User                                              |
+
+```mysql
+[mariadb]
+...
+log_output=FILE
+general_log
+general_log_file=/var/log/mysql/mariadb.log
+```
+
 
 #### Sample General Query Log Output
 ```mysql
@@ -76,3 +97,6 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 ```
 
 
+[^1]: [The General Query Log](https://dev.mysql.com/doc/refman/9.1/en/query-log.html)
+[^2]: [Default Option File Locations on Linux, Unix, Mac](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/#default-option-file-locations-on-linux-unix-mac)
+[^3]: []()
