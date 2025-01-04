@@ -71,7 +71,7 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 [mysqld]
 ...
 log_output = FILE                                              -- Available Options [ 'FILE' | 'TABLE' | 'NONE' ]
-general_log = 1                                                -- Available Options [ 'ON'/1 | 'OFF'/0 ]
+general_log = 1                                                -- Available Options [ 1 | 0 ]
 general_log_file = /var/log/mysql/mysql_general_query.log
 ```
 
@@ -79,10 +79,13 @@ general_log_file = /var/log/mysql/mysql_general_query.log
 [mariadb]
 ...
 log_output = FILE                                              -- Available Options [ 'FILE' | 'TABLE' | 'NONE' ]
-general_log = 1                                                -- Available Options [ 'ON'/1 | 'OFF'/0 ]
+general_log = 1                                                -- Available Options [ 1 | 0 ]
 general_log_file = /var/log/mysql/mariadb_general_query.log
 ```
 
+```bash
+sudo systemctl restart mysql.service
+```
 
 #### Sample General Query Log Output
 ```mysql
