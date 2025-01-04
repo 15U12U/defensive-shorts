@@ -158,10 +158,6 @@ SHOW VARIABLES LIKE "log_error%";
 +---------------+------------------------------+
 ```
 
-### Enabling Error Log
-```mysql
-
-```
 
 #### Sample Error Log Output
 ```mysql
