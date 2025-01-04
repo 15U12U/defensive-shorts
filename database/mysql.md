@@ -137,13 +137,25 @@ SHOW VARIABLES LIKE "log_error%";
 ```
 
 #### Output
+##### MysSQL
 ```mysql
-+------------------+----------------------------------+
-| Variable_name    | Value                            |
-+------------------+----------------------------------+
-| error_log      | ON                               |
-| general_log_file | /var/log/mysql/general-query.log |
-+------------------+----------------------------------+
++----------------------------+---------------------------------------+
+| Variable_name              | Value                                 |
++----------------------------+---------------------------------------+
+| log_error                  | /var/log/mysql/error.log              |
+| log_error_services         | log_sink_json                         |
+| log_error_suppression_list | MY-000031,ER_SERVER_SHUTDOWN_COMPLETE |
+| log_error_verbosity        | 2                                     |
++----------------------------+---------------------------------------+
+```
+
+##### MariaDB
+```mysql
++---------------+------------------------------+
+| Variable_name | Value                        |
++---------------+------------------------------+
+| log_error     | /var/log/mariadb/mariadb.err |
++---------------+------------------------------+
 ```
 
 ### Enabling Error Log
