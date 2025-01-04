@@ -87,25 +87,25 @@ general_log_file = /var/log/mysql/mariadb_general_query.log
 SELECT * FROM mysql.general_log;
 ```
 
-| event_time          | user_host              | thread_id | server_id | command_type | argument |
-| :------------------ | :--------------------- | :-------: | :-------: | :----------- | :------: |
-| 2025-01-04 13:35:10 | admin[admin]@localhost | 12350     | 1         | Connect      | `BLOB`   |
-| 2025-01-04 13:35:11 | admin[admin]@localhost | 12350     | 1         | Query        | `BLOB`   |
-| 2025-01-04 13:35:12 | admin[admin]@localhost | 12350     | 1         | Query        | `BLOB`   |
-| 2025-01-04 13:35:13 | admin[admin]@localhost | 12350     | 1         | Query        | `BLOB`   |
-| 2025-01-04 13:35:14 | admin[admin]@localhost | 12350     | 1         | Quit         | `BLOB`   |
+| event_time          | user_host                      | thread_id | server_id | command_type | argument |
+| :------------------ | :----------------------------- | :-------: | :-------: | :----------- | :------: |
+| 2025-01-04 13:35:10 | admin[admin] @ localhost [::1] | 12350     | 1         | Connect      | `BLOB`   |
+| 2025-01-04 13:35:11 | admin[admin] @ localhost [::1] | 12350     | 1         | Query        | `BLOB`   |
+| 2025-01-04 13:35:12 | admin[admin] @ localhost [::1] | 12350     | 1         | Query        | `BLOB`   |
+| 2025-01-04 13:35:13 | admin[admin] @ localhost [::1] | 12350     | 1         | Query        | `BLOB`   |
+| 2025-01-04 13:35:14 | admin[admin] @ localhost [::1] | 12350     | 1         | Quit         | `BLOB`   |
 
 ```mysql
 SELECT *, CAST(argument as char(100)) as 'cast_arg' FROM mysql.general_log;
 ```
 
-| event_time          | user_host              | thread_id | server_id | command_type | argument | cast_arg                    |
-| :------------------ | :--------------------- | :-------: | :-------: | :----------- | :------: | :-------------------------- |
-| 2025-01-04 13:35:10 | admin[admin]@localhost | 12350     | 1         | Connect      | `BLOB`   |                             |
-| 2025-01-04 13:35:11 | admin[admin]@localhost | 12350     | 1         | Query        | `BLOB`   | SHOW DATABASES              |
-| 2025-01-04 13:35:12 | admin[admin]@localhost | 12350     | 1         | Query        | `BLOB`   | USE production              |
-| 2025-01-04 13:35:13 | admin[admin]@localhost | 12350     | 1         | Query        | `BLOB`   | SELECT COUNT(*) FROM orders |
-| 2025-01-04 13:35:14 | admin[admin]@localhost | 12350     | 1         | Quit         | `BLOB`   |                             |
+| event_time          | user_host                      | thread_id | server_id | command_type | argument | cast_arg                    |
+| :------------------ | :----------------------------- | :-------: | :-------: | :----------- | :------: | :-------------------------- |
+| 2025-01-04 13:35:10 | admin[admin] @ localhost [::1] | 12350     | 1         | Connect      | `BLOB`   |                             |
+| 2025-01-04 13:35:11 | admin[admin] @ localhost [::1] | 12350     | 1         | Query        | `BLOB`   | SHOW DATABASES              |
+| 2025-01-04 13:35:12 | admin[admin] @ localhost [::1] | 12350     | 1         | Query        | `BLOB`   | USE production              |
+| 2025-01-04 13:35:13 | admin[admin] @ localhost [::1] | 12350     | 1         | Query        | `BLOB`   | SELECT COUNT(*) FROM orders |
+| 2025-01-04 13:35:14 | admin[admin] @ localhost [::1] | 12350     | 1         | Quit         | `BLOB`   |                             |
 
 <br>
 
