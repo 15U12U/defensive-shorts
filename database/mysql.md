@@ -158,6 +158,18 @@ SHOW VARIABLES LIKE "log_error%";
 +---------------+------------------------------+
 ```
 
+### Enabling Error Log [^3]
+#### Method 1: System Variable
+```mysql
+SET GLOBAL log_error_services = 'log_filter_internal,log_sink_internal'; -- OR
+SET PERSIST log_error_services = 'log_filter_internal; log_sink_internal; log_sink_json';
+```
+
+#### Method 2: Option File
+```mysql
+[mysqld]
+log_error_services='log_filter_internal; log_sink_internal; log_sink_json'
+```
 
 #### Sample Error Log Output
 ```mysql
@@ -171,4 +183,4 @@ SHOW VARIABLES LIKE "log_error%";
 
 [^1]: [The General Query Log](https://dev.mysql.com/doc/refman/9.1/en/query-log.html)
 [^2]: [Default Option File Locations on Linux, Unix, Mac](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)
-[^3]: []()
+[^3]: [Error Log Configuration](https://dev.mysql.com/doc/refman/8.4/en/error-log-configuration.html)
