@@ -38,17 +38,17 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 
 #### Sample General Query Log Output
 ```mysql
-[Timestamp]               [Command Type] [User@Host]/[SQL Statement]   
-2025-01-04 13:05:10 12345 Connect        root@localhost as anonymous on
-2025-01-04 13:05:11 12345 Query          SELECT DATABASE()
-2025-01-04 13:05:12 12345 Init DB        testdb
-2025-01-04 13:05:13 12345 Query          SELECT * FROM users
-2025-01-04 13:05:14 12345 Quit
-2025-01-04 13:15:30 12346 Connect        admin@localhost on
-2025-01-04 13:15:31 12346 Query          SET autocommit=1
-2025-01-04 13:15:32 12346 Query          SHOW TABLES
-2025-01-04 13:15:33 12346 Query          INSERT INTO orders (id, product, quantity) VALUES (1, 'Laptop', 2)
-2025-01-04 13:15:34 12346 Quit
+[Timestamp]               [ID] [Command Type] [User@Host]/[SQL Statement]   
+2025-01-04 13:05:10 12345 11   Connect        root@localhost as anonymous on using socket
+2025-01-04 13:05:11 12345 11   Query          SELECT DATABASE()
+2025-01-04 13:05:12 12345 11   Init DB        testdb
+2025-01-04 13:05:13 12345 11   Query          SELECT * FROM users
+2025-01-04 13:05:14 12345 11   Quit
+2025-01-04 13:15:30 12346 12   Connect        admin@localhost on
+2025-01-04 13:15:31 12346 12   Query          SET autocommit=1
+2025-01-04 13:15:32 12346 12   Query          SHOW TABLES
+2025-01-04 13:15:33 12346 12   Query          INSERT INTO orders (id, product, quantity) VALUES (1, 'Laptop', 2)
+2025-01-04 13:15:34 12346 12   Quit
 ```
 
 <br>
