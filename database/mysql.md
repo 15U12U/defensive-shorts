@@ -49,11 +49,19 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 | ~/.my.cnf            | User                                              |
 
 ```mysql
+[mysqld]
+...
+log_output = FILE
+general_log = 1
+general_log_file = /var/log/mysql/mysql_general_query.log
+```
+
+```mysql
 [mariadb]
 ...
-log_output=FILE
-general_log
-general_log_file=/var/log/mysql/mariadb.log
+log_output = FILE
+general_log = 1
+general_log_file = /var/log/mysql/mariadb_general_query.log
 ```
 
 
