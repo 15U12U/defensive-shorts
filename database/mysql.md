@@ -131,23 +131,33 @@ SELECT *, CAST(argument as char(100)) as 'cast_arg' FROM mysql.general_log;
 ## Error Log
 The error log contains a record of mysqld startup and shutdown times. It also contains diagnostic messages such as errors, warnings, and notes that occur during server startup and shutdown, and while the server is running.
 
+### Verify General Query Log
+```mysql
+SHOW VARIABLES LIKE "log_error%";
+```
+
+#### Output
+```mysql
++------------------+----------------------------------+
+| Variable_name    | Value                            |
++------------------+----------------------------------+
+| error_log      | ON                               |
+| general_log_file | /var/log/mysql/general-query.log |
++------------------+----------------------------------+
+```
+
 ### Enabling Error Log
 ```mysql
-SET GLOBAL log_output = 'FILE';                                         -- Available Options [ 'FILE' | 'TABLE' | 'NONE' ]
-SET GLOBAL general_log = 'ON';  /* or */ SET GLOBAL general_log = 1;    -- Available Options [ 'ON'/1 | 'OFF'/0 ]
+
 ```
 
-> [!NOTE]
-> If you want to change the general log file location, you can run the following commands and change the location accordingly
-
+#### Sample Error Log Output
 ```mysql
-SET GLOBAL general_log_file = 'C:/Temp/mysql_general_query.log';    -- Windows
-SET GLOBAL general_log_file = '/tmp/mysql_general_query.log';       -- Linux
-```
-
-```mysql
-SET GLOBAL general_log_file = 'C:/Temp/mariadb_general_query.log';    -- Windows
-SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
+[Timestamp]                 [Thread] [Label]   [Error Code] [Subsystem] [Message]
+2020-08-06T14:25:02.835618Z 0        [Note]    [MY-012487]  [InnoDB]    DDL log recovery : begin
+2020-08-06T14:25:02.936146Z 0        [Warning] [MY-010068]  [Server]    CA certificate /var/mysql/sslinfo/cacert.pem is self signed.
+2020-08-06T14:25:02.963127Z 0        [Note]    [MY-010253]  [Server]    IPv6 is available.
+2020-08-06T14:25:03.109022Z 5        [Note]    [MY-010051]  [Server]    Event Scheduler: scheduler thread started with id 5
 ```
 
 
