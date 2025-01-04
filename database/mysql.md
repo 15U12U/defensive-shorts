@@ -38,7 +38,7 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 ```
 
 #### Method 2: Option File [^2]
-
+##### Linux
 | Location             | Scope                                             |
 | :------------------- | :------------------------------------------------ |
 | /etc/my.cnf          | Global                                            |
@@ -47,6 +47,25 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 | $MYSQL_HOME/my.cnf   | Server                                            |
 | defaults-extra-file  | File specified with --defaults-extra-file, if any |
 | ~/.my.cnf            | User                                              |
+
+##### Windows
+| Location                        | Scope                                             |
+| :------------------------------ | :------------------------------------------------ |
+| System Windows Directory\my.ini | Global                                            |
+| System Windows Directory\my.cnf | Global                                            |
+| Windows Directory\my.ini        | Global                                            |
+| Windows Directory\my.cnf        | Global                                            |
+| C:\my.ini                       | Global                                            |
+| C:\my.cnf                       | Global                                            |
+| INSTALLDIR\my.ini               | Server                                            |
+| INSTALLDIR\my.cnf               | Server                                            |
+| INSTALLDIR\data\my.ini          | Server                                            |
+| INSTALLDIR\data\my.cnf          | Server                                            |
+| %MARIADB_HOME%\my.ini           | Server (from MariaDB 10.6)                        |
+| %MARIADB_HOME%\my.cnf           | Server (from MariaDB 10.6)                        |
+| %MYSQL_HOME%\my.ini             | Server                                            |
+| %MYSQL_HOME%\my.cnf             | Server                                            |
+| defaults-extra-file             | File specified with --defaults-extra-file, if any |
 
 ```mysql
 [mysqld]
@@ -133,5 +152,5 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 
 
 [^1]: [The General Query Log](https://dev.mysql.com/doc/refman/9.1/en/query-log.html)
-[^2]: [Default Option File Locations on Linux, Unix, Mac](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/#default-option-file-locations-on-linux-unix-mac)
+[^2]: [Default Option File Locations on Linux, Unix, Mac](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)
 [^3]: []()
