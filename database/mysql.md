@@ -51,16 +51,16 @@ SET GLOBAL general_log_file = '/tmp/mariadb_general_query.log';       -- Linux
 ```mysql
 [mysqld]
 ...
-log_output = FILE
-general_log = 1
+log_output = FILE                                              -- Available Options [ 'FILE' | 'TABLE' | 'NONE' ]
+general_log = 1                                                -- Available Options [ 'ON'/1 | 'OFF'/0 ]
 general_log_file = /var/log/mysql/mysql_general_query.log
 ```
 
 ```mysql
 [mariadb]
 ...
-log_output = FILE
-general_log = 1
+log_output = FILE                                              -- Available Options [ 'FILE' | 'TABLE' | 'NONE' ]
+general_log = 1                                                -- Available Options [ 'ON'/1 | 'OFF'/0 ]
 general_log_file = /var/log/mysql/mariadb_general_query.log
 ```
 
